@@ -188,13 +188,11 @@ msgstr ""
 msgid "Share my chart on a public page"
 msgstr "Bagikan grafikku di halaman publik"
 
-# machine-translated
 #. NOTE: Switch in the settings: show the kilograms on the public chart, or
 #. only the shape of the line.
 msgid "Show my weight"
 msgstr "Tampilkan berat badanku"
 
-# machine-translated
 #. NOTE: Switch in the settings: show the boxes with the current average, BMI
 #. and changes under the public chart.
 msgid "Show the stat boxes on the public page"
