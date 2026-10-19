@@ -4,9 +4,10 @@ Kilo is translated into Dutch (`nl`), French (`fr`), Spanish (`es`), Brazilian
 Portuguese (`pt`), German (`de`), Italian (`it`), Indonesian (`id`), Polish
 (`pl`), Romanian (`ro`), Hungarian (`hu`), Danish (`da`), Finnish (`fi`), Swedish
 (`sv`) and Norwegian Bokmål (`nb`). English (`en`) is the source language and the
-fallback. All fourteen translations were **machine-generated** and need review
-by people who speak the language; that is the most useful contribution you can
-make.
+fallback. All fourteen translations were **machine-generated**. German, Italian,
+Finnish, Indonesian and Spanish have since been reviewed by native speakers; the
+others still need review by people who speak the language, and that is the most
+useful contribution you can make.
 
 Visitors can pick a language in the language menu (in the header, or in the account
 menu when signed in; the names come from `LANGUAGE_NAMES` in `app/i18n.py`, so a new
@@ -49,8 +50,12 @@ after every change to a `.po` file.
 1. Edit `translations/<lang>/LC_MESSAGES/messages.po`. Each entry has the
    English text (`msgid`), your translation (`msgstr`) and sometimes a note for
    translators (a line starting with `#.`). Plural entries have `msgstr[0]`
-   (singular) and `msgstr[1]` (plural).
-2. Once a person has reviewed an entry, delete its `# machine-translated` line.
+   (singular) and `msgstr[1]` (plural); Polish has a third form, Indonesian only one. `msgstr[0]` is the text shown for 1 (in
+   French and Brazilian Portuguese also for 0), so keep it singular ("1 minuto",
+   not "1 minutos"), even when the English `msgid` above it reads the same as
+   the plural.
+2. Once a person has reviewed an entry, delete its `# machine-translated` line
+   completely (do not leave an empty line or a lone `#` in its place).
    Entries that still have it are the ones that need a look; the check script
    (below) counts them per language.
 3. Run `pybabel compile -d translations`, look at the result in the browser, and
