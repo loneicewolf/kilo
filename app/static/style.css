@@ -1202,15 +1202,9 @@ body.dashboard-body.public-body {
 
 /* C. WIDE FLOW - the flow layout on a window wider than a phone (small
       tablets, landscape phones, short desktop windows): use the extra width
-      for five stat columns (two rows) and a centred, narrower daily log. */
+      for five stat columns (two rows); the daily log is as wide as the chart. */
 @media (min-width: 721px) and (max-width: 1000px), (min-width: 721px) and (max-height: 600px) {
   .stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-
-  .entries {
-    width: 100%;
-    max-width: 640px;
-    align-self: center;
-  }
 }
 
 /* D. DESKTOP GRID (wider than 1000px and taller than 600px): the stat boxes
