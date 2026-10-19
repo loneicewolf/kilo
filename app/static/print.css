@@ -16,7 +16,7 @@ html[data-theme="dark"] {
   --text: #1f2420;
   --muted: #5b665e;
   --border: #dfe3df;
-  --accent: #2f6f4f;
+  --accent: #198154;
   --danger: #b3261e;
 }
 
@@ -47,6 +47,8 @@ textarea,
 .account-trigger {
   padding: 0;
   color: var(--text);
+  background: none;
+  border: none;
 }
 
 /* The wordmark: always the light one. */
@@ -90,6 +92,7 @@ main.dashboard-main {
   padding: 3mm;
   margin-bottom: 4mm;
   break-inside: avoid;
+  box-shadow: none;
 }
 
 .chart-canvas-wrap {
@@ -118,4 +121,5 @@ main.dashboard-main {
 
 .stat-card {
   break-inside: avoid;
+  box-shadow: none;
 }
