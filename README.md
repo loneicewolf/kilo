@@ -44,6 +44,11 @@ Then open http://127.0.0.1:5000. Data is stored in `instance/weight.db`
 
 Weights are in kilograms and heights in centimetres or metres.
 
+The colours are CSS variables at the top of `app/static/style.css` (light and dark mode),
+with the printed version's light palette in `app/static/print.css`. The green (`--accent`,
+`#198154`) is chosen so white text on it and the green itself on the page background both
+reach the WCAG AA contrast of 4.5 : 1; keep that if you change it.
+
 ## Languages
 
 Kilo speaks English, Dutch, French, Spanish, Brazilian Portuguese, German,
