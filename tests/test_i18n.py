@@ -407,7 +407,7 @@ def test_a_shared_cache_would_keep_the_languages_apart(client):
     "lang, label",
     [
         ("en", "Current average"), ("nl", "Huidig gemiddelde"), ("fr", "Moyenne actuelle"),
-        ("es", "Media actual"), ("pt", "Média atual"), ("de", "Aktueller Durchschnitt"),
+        ("es", "Promedio actual"), ("pt", "Média atual"), ("de", "Aktueller Durchschnitt"),
         ("it", "Media attuale"), ("id", "Rata-rata saat ini"), ("pl", "Obecna średnia"),
         ("ro", "Media curentă"), ("hu", "Jelenlegi átlag"), ("da", "Aktuelt gennemsnit"),
         ("fi", "Nykyinen keskiarvo"), ("sv", "Aktuellt medelvärde"), ("nb", "Nåværende gjennomsnitt"),
