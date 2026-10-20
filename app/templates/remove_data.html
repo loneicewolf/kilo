@@ -29,8 +29,9 @@
         <p>{% trans num=ttl_minutes, email=email %}We sent a 6-digit code to <strong>{{ email }}</strong>. It expires in {{ num }} minute.{% pluralize num %}We sent a 6-digit code to <strong>{{ email }}</strong>. It expires in {{ num }} minutes.{% endtrans %}</p>
         <form method="post" action="{{ url_for('account.confirm_removal') }}" class="entry-form">
           {{ form.hidden_tag() }}
-          {{ code_field(form) }}
-          <button type="submit" class="button-danger">{{ _("Delete everything") }}</button>
+          {% call code_field(form) %}
+            <button type="submit" class="button-danger">{{ _("Delete everything") }}</button>
+          {% endcall %}
         </form>
         <form method="post" action="{{ url_for('account.send_removal_code') }}" class="inline-form">
           {{ form.csrf_token }}

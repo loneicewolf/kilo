@@ -22,11 +22,15 @@
   </form>
 {% endmacro %}
 
-{# The field for an emailed 6-digit code (sign-in and "Remove my data"). #}
+{# The field for an emailed 6-digit code (sign-in and "Remove my data"), with the submit button
+   from the call block on the same line, like the email form. #}
 {% macro code_field(form) %}
-  <div class="field">
+  <div class="field field-wide">
     {{ form.code.label }}
-    {{ form.code(placeholder="123456", autofocus=true, maxlength=6, inputmode="numeric") }}
+    <div class="input-with-button">
+      {{ form.code(placeholder="123456", autofocus=true, maxlength=6, inputmode="numeric") }}
+      {{ caller() }}
+    </div>
     {{ field_errors(form.code) }}
   </div>
 {% endmacro %}

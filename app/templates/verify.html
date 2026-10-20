@@ -9,8 +9,9 @@
     <p>{% trans num=ttl_minutes, email=email %}We sent a 6-digit code to <strong>{{ email }}</strong>. It expires in {{ num }} minute.{% pluralize num %}We sent a 6-digit code to <strong>{{ email }}</strong>. It expires in {{ num }} minutes.{% endtrans %}</p>
     <form method="post" action="{{ url_for('auth.verify') }}" class="entry-form">
       {{ form.hidden_tag() }}
-      {{ code_field(form) }}
-      <button type="submit">{{ _("Verify") }}</button>
+      {% call code_field(form) %}
+        <button type="submit">{{ _("Verify") }}</button>
+      {% endcall %}
     </form>
     <form method="post" action="{{ url_for('auth.resend_code') }}" class="inline-form">
       {{ form.csrf_token }}
