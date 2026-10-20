@@ -19,9 +19,10 @@ The Hacker's Diet files are in test_import_hackdiet.py.
 import io
 from datetime import date
 
+import pytest
 from sqlalchemy import event
 
-from app import db
+from app import db, routes
 from app.models import WeightEntry
 
 
@@ -161,13 +162,26 @@ def test_export_then_import_round_trips(logged_in_client, app):
         assert [e.weight for e in entries] == [79.7, 80.1]
 
 
-def test_export_filename_contains_todays_date(logged_in_client):
+def test_export_filename_contains_the_address_and_todays_date(logged_in_client):
     client, _ = logged_in_client
     resp = client.get("/settings/export")
-    assert (
-        f"filename=kilo-tracker-export-{date.today().isoformat()}.csv"
-        in resp.headers["Content-Disposition"]
+    assert resp.headers["Content-Disposition"] == (
+        f'attachment; filename="kilo-tracker-export-user@example.com-{date.today().isoformat()}.csv"'
     )
+
+
+@pytest.mark.parametrize(
+    ("email", "part"),
+    [
+        ("first.last+kilo@example.com", "first.last+kilo@example.com-"),
+        ('"a b;c"@example.com', "_a_b_c_@example.com-"),  # quotes, space and ; would break the header
+        ("jörg@example.com", "j_rg@example.com-"),
+        (None, ""),
+    ],
+)
+def test_export_filename_keeps_only_safe_characters_of_the_address(app, email, part):
+    with app.test_request_context():
+        assert routes.export_filename(email) == f"kilo-tracker-export-{part}{date.today().isoformat()}.csv"
 
 
 def test_csv_import_uses_the_same_weight_limit(logged_in_client):

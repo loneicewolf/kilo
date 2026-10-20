@@ -21,6 +21,7 @@ when the user has turned that on.
 """
 
 import hashlib
+import re
 import secrets
 import time
 from datetime import date, timedelta
@@ -508,10 +509,17 @@ def export_entries():
     return Response(
         csv_text,
         mimetype="text/csv",
-        headers={
-            "Content-Disposition": f"attachment; filename=kilo-tracker-export-{date.today().isoformat()}.csv"
-        },
+        headers={"Content-Disposition": f'attachment; filename="{export_filename(session.get("email"))}"'},
     )
+
+
+def export_filename(email):
+    """`kilo-tracker-export-<address>-<date>.csv`, so downloads of several accounts are told apart.
+
+    Characters that are not safe in a file name or in the header (quotes, semicolons, spaces,
+    slashes, non-ASCII) become `_`; without an address in the session the name has none."""
+    address = f"{re.sub(r'[^A-Za-z0-9@._+-]', '_', email)}-" if email else ""
+    return f"kilo-tracker-export-{address}{date.today().isoformat()}.csv"
 
 
 def _flash_import_result(result, height_set):
