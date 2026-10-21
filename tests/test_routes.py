@@ -92,7 +92,7 @@ def test_about_page_renders(client):
     assert resp.status_code == 200
     assert b"SHA-256" in resp.data
     assert b"Hacker's Diet Online" in resp.data
-    assert b"mailto:info@11tools.com" in resp.data
+    assert b"mailto:ramon@11tools.com" in resp.data
     assert b'href="https://github.com/ramondevries/kilo"' in resp.data
 
 

@@ -42,7 +42,7 @@ EXTRACT_ARGS = [
     "--no-location",
     "--project=Kilo Tracker",
     "--copyright-holder=Ramón de Vries",
-    "--msgid-bugs-address=info@11tools.com",
+    "--msgid-bugs-address=ramon@11tools.com",
 ]
 EXTRACT_COMMAND = shlex.join(["pybabel", "extract", *EXTRACT_ARGS, "-o", "translations/messages.pot", "."])
 

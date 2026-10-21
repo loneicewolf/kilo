@@ -102,7 +102,7 @@ Whenever a string is added, removed or reworded in the code or the templates:
 ```bash
 pybabel extract -F babel.cfg -k _l -c NOTE: --no-location \
   --project="Kilo Tracker" --copyright-holder="Ramón de Vries" \
-  --msgid-bugs-address=info@11tools.com -o translations/messages.pot .
+  --msgid-bugs-address=ramon@11tools.com -o translations/messages.pot .
 ```
 
 **2. Merge** the template into every catalog with this script, run from the

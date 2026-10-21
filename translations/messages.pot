@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Kilo Tracker VERSION\n"
-"Report-Msgid-Bugs-To: info@11tools.com\n"
+"Report-Msgid-Bugs-To: ramon@11tools.com\n"
 "POT-Creation-Date: 2026-10-17 17:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
