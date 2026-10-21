@@ -4,10 +4,10 @@ Kilo is translated into Dutch (`nl`), French (`fr`), Spanish (`es`), Brazilian
 Portuguese (`pt`), German (`de`), Italian (`it`), Indonesian (`id`), Polish
 (`pl`), Romanian (`ro`), Hungarian (`hu`), Danish (`da`), Finnish (`fi`), Swedish
 (`sv`) and Norwegian Bokmål (`nb`). English (`en`) is the source language and the
-fallback. All fourteen translations were **machine-generated**. German, Italian,
-Finnish, Indonesian and Spanish have since been reviewed by native speakers; the
-others still need review by people who speak the language, and that is the most
-useful contribution you can make.
+fallback. All fourteen translations were **machine-generated**. Dutch, German,
+Italian, Finnish, Indonesian and Spanish have since been reviewed by native
+speakers; the others still need review by people who speak the language, and
+that is the most useful contribution you can make.
 
 Visitors can pick a language in the language menu (in the header, or in the account
 menu when signed in; the names come from `LANGUAGE_NAMES` in `app/i18n.py`, so a new
