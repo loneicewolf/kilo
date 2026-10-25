@@ -414,6 +414,22 @@ msgstr "Versi %(version)s &middot; di-commit pada %(date)s"
 msgid "Version %(version)s"
 msgstr "Versi %(version)s"
 
+# machine-translated
+msgid "Video tutorial"
+msgstr "Video tutorial"
+
+# machine-translated
+msgid ""
+"A 13-minute video on YouTube shows how Kilo Tracker works, from signing in "
+"to sharing your chart and taking your data with you."
+msgstr ""
+"Video 13 menit di YouTube menunjukkan cara kerja Kilo Tracker, mulai dari "
+"masuk hingga membagikan grafikmu dan membawa datamu."
+
+# machine-translated
+msgid "Watch the Kilo Tracker video tutorial on YouTube"
+msgstr "Tonton video tutorial Kilo Tracker di YouTube"
+
 msgid "How signing in works"
 msgstr "Cara kerja masuk"
 

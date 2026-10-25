@@ -513,6 +513,25 @@ h2 {
   font-size: var(--fs-small);
 }
 
+/* About page: the video's still image is the link to YouTube (no embed, so nothing loads from
+   YouTube until the visitor clicks). */
+.video-link {
+  display: block;
+  max-width: 640px;
+  border: 1px solid var(--border);
+}
+
+.video-link:hover,
+.video-link:focus-visible {
+  border-color: var(--accent);
+}
+
+.video-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Card title row with a round back arrow on the left. */
 .page-head {
   display: flex;

@@ -524,6 +524,22 @@ msgid "Version %(version)s"
 msgstr "Version %(version)s"
 
 
+# machine-translated
+msgid "Video tutorial"
+msgstr "Video-Anleitung"
+
+# machine-translated
+msgid ""
+"A 13-minute video on YouTube shows how Kilo Tracker works, from signing in "
+"to sharing your chart and taking your data with you."
+msgstr ""
+"Ein 13-minütiges Video auf YouTube zeigt, wie Kilo Tracker funktioniert: vom"
+" Anmelden über das Teilen deines Diagramms bis zur Mitnahme deiner Daten."
+
+# machine-translated
+msgid "Watch the Kilo Tracker video tutorial on YouTube"
+msgstr "Die Video-Anleitung zu Kilo Tracker auf YouTube ansehen"
+
 msgid "How signing in works"
 msgstr "So funktioniert die Anmeldung"
 

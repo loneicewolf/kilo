@@ -516,6 +516,22 @@ msgid "Version %(version)s"
 msgstr "Verzió: %(version)s"
 
 # machine-translated
+msgid "Video tutorial"
+msgstr "Oktatóvideó"
+
+# machine-translated
+msgid ""
+"A 13-minute video on YouTube shows how Kilo Tracker works, from signing in "
+"to sharing your chart and taking your data with you."
+msgstr ""
+"Egy 13 perces YouTube-videó bemutatja, hogyan működik a Kilo Tracker, a "
+"bejelentkezéstől a diagramod megosztásán át az adataid elviteléig."
+
+# machine-translated
+msgid "Watch the Kilo Tracker video tutorial on YouTube"
+msgstr "Nézd meg a Kilo Tracker oktatóvideóját a YouTube-on"
+
+# machine-translated
 msgid "How signing in works"
 msgstr "Hogyan működik a bejelentkezés"
 

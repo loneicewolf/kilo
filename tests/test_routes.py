@@ -446,7 +446,17 @@ def test_print_stylesheet_is_linked_for_print_only(logged_in_client):
 
 def test_every_about_section_has_a_back_link_to_the_dashboard(client):
     html = client.get("/about").data.decode()
-    assert len(re.findall(r'<a class="back-link" href="/"', html)) == html.count("<section") == 2
+    assert len(re.findall(r'<a class="back-link" href="/"', html)) == html.count("<section") == 3
+
+
+def test_about_page_links_to_the_video_tutorial_with_a_local_image(client):
+    html = client.get("/about").data.decode()
+    link = re.search(r'<a class="video-link" href="https://www\.youtube\.com/watch\?v=Yv9qKf6HwIE"[^>]*>(.*?)</a>',
+                     html, re.S)
+    assert link and 'rel="noopener"' in link.group(0)
+    image = re.search(r'<img src="(/static/video-tutorial\.webp\?v=\d+)"[^>]*alt="[^"]+"', link.group(1))
+    assert image  # served by Kilo itself: the CSP allows images from 'self' only
+    assert client.get(image.group(1)).status_code == 200
 
 
 def test_daily_log_has_scroll_to_top_button(logged_in_client):

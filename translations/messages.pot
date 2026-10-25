@@ -396,6 +396,17 @@ msgstr ""
 msgid "Version %(version)s"
 msgstr ""
 
+msgid "Video tutorial"
+msgstr ""
+
+msgid ""
+"A 13-minute video on YouTube shows how Kilo Tracker works, from signing in "
+"to sharing your chart and taking your data with you."
+msgstr ""
+
+msgid "Watch the Kilo Tracker video tutorial on YouTube"
+msgstr ""
+
 msgid "How signing in works"
 msgstr ""
 

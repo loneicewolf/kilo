@@ -44,6 +44,18 @@
   <section class="add-entry">
     <div class="page-head">
       {{ back_link(url_for('main.index'), _("Back to the dashboard")) }}
+      <h2>{{ _("Video tutorial") }}</h2>
+    </div>
+    <p>{{ _("A 13-minute video on YouTube shows how Kilo Tracker works, from signing in to sharing your chart and taking your data with you.") }}</p>
+    <a class="video-link" href="https://www.youtube.com/watch?v=Yv9qKf6HwIE" target="_blank" rel="noopener">
+      <img src="{{ static_url('video-tutorial.webp') }}" width="960" height="540"
+           alt="{{ _('Watch the Kilo Tracker video tutorial on YouTube') }}">
+    </a>
+  </section>
+
+  <section class="add-entry">
+    <div class="page-head">
+      {{ back_link(url_for('main.index'), _("Back to the dashboard")) }}
       <h2>{{ _("How signing in works") }}</h2>
     </div>
     <p>{% trans trimmed num=ttl_minutes %}There are no passwords. Enter your email and we send a 6-digit code
