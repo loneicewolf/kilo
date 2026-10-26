@@ -262,6 +262,25 @@ html[data-theme="dark"] .brand-logo-dark { display: block; }
 
 .language-go { margin-inline-start: 0.4rem; }
 
+/* "Skip to ..." (base.html): off screen until a keyboard focuses it. */
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  top: -10rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+}
+
+.skip-link:focus { top: 0.5rem; }
+
+/* What a skip link jumps to takes focus (tabindex="-1") but needs no ring: the next Tab goes on from there. */
+#main:focus,
+#daily-log:focus { outline: none; }
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1135,6 +1154,18 @@ body.dashboard-body.public-body {
 }
 
 .undo-btn:hover, .undo-btn:focus-visible { background: rgba(127, 127, 127, 0.25); }
+
+/* Visitors who asked their system for less motion get changes at once: no fades or slides. The
+   account menu's 0.4 s linger is a delay, not motion, so it stays. Smooth scrolling started by the
+   script checks the same setting (scrollBehavior() in dashboard-log.js). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ---- Responsive layout ------------------------------------------------
    Three independent rules, from the outside in. They must stay last so they

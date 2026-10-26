@@ -38,6 +38,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='print.css') }}" media="print">
 </head>
 <body class="{% block body_class %}{% endblock %}">
+  {# The first thing a keyboard reaches: it jumps over the header (on the dashboard, over the chart
+     and the stat boxes too). Hidden until it has focus. #}
+  {% block skip_link %}
+    {# NOTE: Link for keyboard users at the very top of every page; it jumps past the header. #}
+    <a class="skip-link" href="#main">{{ _("Skip to main content") }}</a>
+  {% endblock %}
   <header class="site-header">
     <a class="brand" href="{{ url_for('main.index') }}" aria-label="Kilo Tracker"{% block brand_link_attrs %}{% endblock %}>
       <img class="brand-logo brand-logo-light" src="{{ url_for('static', filename='kilo-wordmark-light.svg') }}" alt="Kilo Tracker">
@@ -75,7 +81,7 @@
     {% endif %}{% endblock %}
   </header>
 
-  <main class="{% block main_class %}container{% endblock %}">
+  <main id="main" tabindex="-1" class="{% block main_class %}container{% endblock %}">
     {% block flashes %}{% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         <ul class="flashes">

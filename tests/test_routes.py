@@ -482,6 +482,23 @@ def test_print_stylesheet_is_linked_for_print_only(logged_in_client):
     assert client.get("/static/print.css").status_code == 200
 
 
+def _first_link_in_body(html):
+    return re.search(r"<body[^>]*>\s*(<a [^>]*>[^<]*</a>)", html).group(1)
+
+
+def test_every_page_starts_with_a_link_that_skips_the_header(client):
+    html = client.get("/about").data.decode()
+    assert _first_link_in_body(html) == '<a class="skip-link" href="#main">Skip to main content</a>'
+    assert '<main id="main" tabindex="-1"' in html
+
+
+def test_the_dashboard_skips_straight_to_the_daily_log(logged_in_client):
+    client, _ = logged_in_client
+    html = client.get("/").data.decode()
+    assert _first_link_in_body(html) == '<a class="skip-link" href="#daily-log">Skip to the daily log</a>'
+    assert '<section class="entries" id="daily-log" tabindex="-1">' in html
+
+
 def test_every_about_section_has_a_back_link_to_the_dashboard(client):
     html = client.get("/about").data.decode()
     assert len(re.findall(r'<a class="back-link" href="/"', html)) == html.count("<section") == 3

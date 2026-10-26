@@ -101,8 +101,40 @@ function fillEmojiGrid(grid, emojis) {
     button.type = 'button';
     button.className = 'emoji-btn';
     button.textContent = emoji;
+    button.tabIndex = -1; // one Tab stop for the whole panel, see moveEmojiFocus
     return button;
   }));
+}
+
+// The panel's buttons in order, without the hidden "Recently used" part.
+function emojiButtons() {
+  return [...emojiPanel.querySelectorAll('.emoji-btn')].filter((b) => b.getClientRects().length > 0);
+}
+
+// The panel is a single Tab stop (the last emoji that had focus, at first the first one), so a
+// keyboard does not have to pass 60 buttons to reach Save; the arrow keys, Home and End move
+// inside it.
+function focusEmoji(button) {
+  emojiButtons().forEach((b) => { b.tabIndex = b === button ? 0 : -1; });
+  button.focus();
+}
+
+function moveEmojiFocus(from, key) {
+  const buttons = emojiButtons();
+  const index = buttons.indexOf(from);
+  if (key === 'ArrowRight') return buttons[index + 1];
+  if (key === 'ArrowLeft') return buttons[index - 1];
+  if (key === 'Home') return buttons[0];
+  if (key === 'End') return buttons.at(-1);
+  // Up and down: the button nearest above or below in the row next to this one.
+  const top = (b) => b.getBoundingClientRect().top;
+  const left = (b) => b.getBoundingClientRect().left;
+  const down = key === 'ArrowDown';
+  const others = buttons.filter((b) => (down ? top(b) > top(from) + 1 : top(b) < top(from) - 1));
+  if (!others.length) return undefined;
+  const rowTop = down ? Math.min(...others.map(top)) : Math.max(...others.map(top));
+  const row = others.filter((b) => Math.abs(top(b) - rowTop) <= 1);
+  return row.reduce((best, b) => (Math.abs(left(b) - left(from)) < Math.abs(left(best) - left(from)) ? b : best));
 }
 
 function closeEmojiPicker() {
@@ -120,6 +152,7 @@ function toggleEmojiPicker(popover, button, textarea) {
   fillEmojiGrid(document.getElementById('emoji-recent-grid'), recent);
   document.getElementById('emoji-recent').hidden = recent.length === 0;
   emojiPanel.hidden = false;
+  emojiButtons().forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; });
   button.setAttribute('aria-expanded', 'true');
   emojiTarget = { textarea, button };
   textarea.focus();
@@ -139,6 +172,22 @@ function insertEmoji(textarea, emoji) {
 fillEmojiGrid(document.getElementById('emoji-grid'), EMOJI);
 // Keep the cursor in the note: pressing a button would otherwise take the focus.
 emojiPanel.addEventListener('mousedown', (e) => e.preventDefault());
+emojiPanel.addEventListener('keydown', (e) => {
+  const button = e.target.closest('.emoji-btn');
+  if (!button) return;
+  if (e.key === 'Escape') {
+    // Closes the panel only; the note editor and what was typed stay.
+    e.stopPropagation();
+    const textarea = emojiTarget && emojiTarget.textarea;
+    closeEmojiPicker();
+    if (textarea) textarea.focus();
+    return;
+  }
+  if (!['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(e.key)) return;
+  e.preventDefault();
+  const next = moveEmojiFocus(button, e.key);
+  if (next) focusEmoji(next);
+});
 emojiPanel.addEventListener('click', (e) => {
   const button = e.target.closest('.emoji-btn');
   if (!button || !emojiTarget) return;
@@ -414,8 +463,13 @@ document.querySelectorAll('.day-row').forEach(bindRow);
 const entriesPanel = document.querySelector('.entries');
 
 // Rows are newest-first, so the top of the panel is the most recent record.
+// 'smooth', unless the visitor's system asks for less motion.
+function scrollBehavior() {
+  return matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+}
+
 document.getElementById('scroll-top-btn').addEventListener('click', () => {
-  entriesPanel.scrollTo({ top: 0, behavior: 'smooth' });
+  entriesPanel.scrollTo({ top: 0, behavior: scrollBehavior() });
 });
 const dayRows = document.getElementById('day-rows');
 const dayRowTemplate = document.getElementById('day-row-template');
@@ -486,7 +540,7 @@ async function scrollToDate(dateStr) {
     row = dayRows.querySelector('.day-row[data-date="' + dateStr + '"]');
   }
   if (row) {
-    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    row.scrollIntoView({ behavior: scrollBehavior(), block: 'center' });
     setHighlightedRow(row);
   }
 }

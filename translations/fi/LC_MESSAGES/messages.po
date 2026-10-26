@@ -523,6 +523,12 @@ msgstr "Selaimen kieli"
 msgid "OK"
 msgstr "OK"
 
+# machine-translated
+#. Link for keyboard users at the very top of every page; it jumps past the
+#. header.
+msgid "Skip to main content"
+msgstr "Siirry pääsisältöön"
+
 msgid "Signed in"
 msgstr "Kirjautunut"
 
@@ -545,6 +551,12 @@ msgstr "Takaisin aloitussivulle"
 #. Title of the public page that shows someone's weight chart.
 msgid "Weight chart"
 msgstr "Painokaavio"
+
+# machine-translated
+#. Link for keyboard users at the top of the dashboard; it jumps past the chart
+#. and the numbers to the list of days.
+msgid "Skip to the daily log"
+msgstr "Siirry päiväkirjaan"
 
 # machine-translated
 #. Screen-reader label of the weight field of one day in the daily log;

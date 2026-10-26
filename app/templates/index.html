@@ -6,6 +6,10 @@
 {% block title %}{% if public %}{{ _("Weight chart") }} — {% endif %}Kilo Tracker{% endblock %}
 {% block body_class %}dashboard-body{{ ' public-body' if public }}{% endblock %}
 {% block main_class %}dashboard-main{% endblock %}
+{% block skip_link %}{% if public %}{{ super() }}{% else %}
+  {# NOTE: Link for keyboard users at the top of the dashboard; it jumps past the chart and the numbers to the list of days. #}
+  <a class="skip-link" href="#daily-log">{{ _("Skip to the daily log") }}</a>
+{% endif %}{% endblock %}
 
 {% macro day_row(day) %}
   <div class="day-row"{% if day %} data-date="{{ day.date }}"{% endif %}>
@@ -127,7 +131,7 @@
     {% endif %}
 
     {% if not public %}
-    <section class="entries">
+    <section class="entries" id="daily-log" tabindex="-1">
       <div class="entries-head">
         <div class="page-head log-head">
           <h2>{{ _("Daily log") }}</h2>

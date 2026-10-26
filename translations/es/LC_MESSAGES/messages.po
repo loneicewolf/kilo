@@ -524,6 +524,12 @@ msgstr "Idioma del navegador"
 msgid "OK"
 msgstr "OK"
 
+# machine-translated
+#. Link for keyboard users at the very top of every page; it jumps past the
+#. header.
+msgid "Skip to main content"
+msgstr "Ir al contenido principal"
+
 msgid "Signed in"
 msgstr "Sesión iniciada"
 
@@ -546,6 +552,12 @@ msgstr "Volver a la página de inicio"
 #. Title of the public page that shows someone's weight chart.
 msgid "Weight chart"
 msgstr "Diagrama de peso"
+
+# machine-translated
+#. Link for keyboard users at the top of the dashboard; it jumps past the chart
+#. and the numbers to the list of days.
+msgid "Skip to the daily log"
+msgstr "Ir al registro diario"
 
 # machine-translated
 #. Screen-reader label of the weight field of one day in the daily log;

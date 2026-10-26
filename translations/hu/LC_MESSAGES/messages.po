@@ -622,6 +622,12 @@ msgid "OK"
 msgstr "OK"
 
 # machine-translated
+#. Link for keyboard users at the very top of every page; it jumps past the
+#. header.
+msgid "Skip to main content"
+msgstr "Ugrás a fő tartalomra"
+
+# machine-translated
 msgid "Signed in"
 msgstr "Bejelentkezve"
 
@@ -650,6 +656,12 @@ msgstr "Vissza a kezdőlapra"
 #. Title of the public page that shows someone's weight chart.
 msgid "Weight chart"
 msgstr "Testsúlydiagram"
+
+# machine-translated
+#. Link for keyboard users at the top of the dashboard; it jumps past the chart
+#. and the numbers to the list of days.
+msgid "Skip to the daily log"
+msgstr "Ugrás a napi naplóra"
 
 # machine-translated
 #. Screen-reader label of the weight field of one day in the daily log;

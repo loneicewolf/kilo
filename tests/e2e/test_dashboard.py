@@ -217,6 +217,72 @@ def test_a_stat_box_reached_with_the_keyboard_shows_the_focus_outline(dashboard,
     assert box.evaluate("el => getComputedStyle(el).outlineStyle") != "none"
 
 
+def test_the_skip_link_is_the_first_tab_stop_and_jumps_to_the_daily_log(dashboard, page):
+    dashboard()
+    page.keyboard.press("Tab")
+    link = page.locator(".skip-link")
+    expect(link).to_be_focused()
+    expect(link).to_have_text("Skip to the daily log")
+    assert link.evaluate("el => el.getBoundingClientRect().top") >= 0  # on screen once focused
+    page.keyboard.press("Enter")
+    page.keyboard.press("Tab")
+    assert page.evaluate("document.activeElement.closest('#daily-log') !== null")
+
+
+def test_less_motion_when_the_system_asks_for_it(dashboard, page):
+    dashboard(weights=dict.fromkeys(range(40), 80.0))
+    duration = "() => getComputedStyle(document.querySelector('.range-btn')).transitionDuration"
+    assert page.evaluate(duration) != "0s"
+    page.emulate_media(reduced_motion="reduce")
+    assert page.evaluate(duration) == "0s"
+    panel = page.locator(".entries")
+    panel.evaluate("panel => panel.scrollTo(0, panel.scrollHeight)")
+    expect(row(page, 35)).to_be_attached()
+    page.click("#scroll-top-btn")
+    assert panel.evaluate("panel => panel.scrollTop") == 0  # at once, not a smooth scroll
+
+
+def test_the_emoji_panel_is_one_tab_stop_with_arrow_keys_inside(dashboard, live_server, page):
+    dashboard()
+    today = row(page)
+    today.locator(".note-btn").click()
+    today.locator(".note-emoji-btn").click()
+    expect(page.locator("#emoji-panel")).to_be_visible()
+    textarea = today.locator(".note-textarea")
+    expect(textarea).to_be_focused()
+    emoji = page.locator("#emoji-grid .emoji-btn")
+    page.keyboard.press("Tab")
+    expect(emoji.nth(0)).to_be_focused()
+    page.keyboard.press("Tab")  # one Tab past all 60 emoji, on to the editor's own buttons
+    expect(today.locator(".note-emoji-btn")).to_be_focused()
+    page.keyboard.press("Shift+Tab")
+    expect(emoji.nth(0)).to_be_focused()
+    page.keyboard.press("ArrowRight")
+    expect(emoji.nth(1)).to_be_focused()
+    columns = emoji.evaluate_all("""buttons => buttons.filter(
+        b => b.getBoundingClientRect().top === buttons[0].getBoundingClientRect().top).length""")
+    page.keyboard.press("ArrowDown")
+    expect(emoji.nth(1 + columns)).to_be_focused()
+    page.keyboard.press("End")
+    expect(emoji.last).to_be_focused()
+    page.keyboard.press("ArrowLeft")
+    expect(emoji.nth(emoji.count() - 2)).to_be_focused()
+    page.keyboard.press("Enter")
+    expect(textarea).to_have_value(emoji.nth(emoji.count() - 2).inner_text())
+    expect(textarea).to_be_focused()  # back in the note, to type on
+    page.keyboard.press("Tab")
+    expect(emoji.nth(emoji.count() - 2)).to_be_focused()  # the panel remembers where it was
+    page.keyboard.press("Tab")  # out of the panel in one step, on to the editor's own buttons
+    expect(today.locator(".note-emoji-btn")).to_be_focused()
+    page.keyboard.press("Shift+Tab")
+    page.keyboard.press("Home")
+    expect(emoji.nth(0)).to_be_focused()
+    page.keyboard.press("Escape")  # closes the panel, keeps the editor and the text
+    expect(page.locator("#emoji-panel")).to_be_hidden()
+    expect(today.locator(".note-popover")).to_be_visible()
+    expect(textarea).to_be_focused()
+
+
 def test_all_reaches_today_even_when_the_last_entry_is_older(dashboard, page):
     dashboard(weights=dict.fromkeys(range(3, 20), 80.0))  # nothing for the last 3 days
     labels = page.evaluate("chart.data.labels")

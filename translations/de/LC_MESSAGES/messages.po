@@ -633,6 +633,12 @@ msgid "OK"
 msgstr "OK"
 
 
+# machine-translated
+#. Link for keyboard users at the very top of every page; it jumps past the
+#. header.
+msgid "Skip to main content"
+msgstr "Zum Hauptinhalt springen"
+
 msgid "Signed in"
 msgstr "Angemeldet"
 
@@ -663,6 +669,12 @@ msgstr "Zurück zur Startseite"
 msgid "Weight chart"
 msgstr "Gewichtsdiagramm"
 
+
+# machine-translated
+#. Link for keyboard users at the top of the dashboard; it jumps past the chart
+#. and the numbers to the list of days.
+msgid "Skip to the daily log"
+msgstr "Zum Tagesprotokoll springen"
 
 # machine-translated
 #. Screen-reader label of the weight field of one day in the daily log;

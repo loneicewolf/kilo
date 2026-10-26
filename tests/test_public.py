@@ -160,6 +160,7 @@ def test_the_public_page_shows_the_chart_and_the_stat_boxes(client, owner):
     assert 'id="weight-chart"' in html and 'id="range-buttons"' in html
     assert 'id="stat-current"' in html and 'id="stat-bmi"' in html and 'data-days="7"' in html
     assert "Height:" in html  # BMI is shown, as the owner chose
+    assert 'class="skip-link" href="#main"' in html  # it has no daily log to skip to
     assert len(page_data(html)["chart_values"]) == 9
     assert page_data(html)["chart_bmis"] is not None
 
