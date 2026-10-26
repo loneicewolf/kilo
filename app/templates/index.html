@@ -169,10 +169,12 @@
   </div>
 
   {% if not public %}
-  <div class="modal-overlay" id="today-prompt" hidden>
+  {# The dialogs are native <dialog>s opened with showModal() (dashboard-log.js): the page behind
+     them is inert, Tab stays inside, Escape cancels and focus goes back where it was. #}
+  <dialog class="modal-overlay" id="today-prompt" aria-labelledby="today-prompt-title" aria-describedby="today-prompt-text">
     <div class="modal-box">
-      <h3>{{ _("Log today's weight?") }}</h3>
-      <p>{{ _("You haven't recorded a weight for today yet.") }}</p>
+      <h3 id="today-prompt-title">{{ _("Log today's weight?") }}</h3>
+      <p id="today-prompt-text">{{ _("You haven't recorded a weight for today yet.") }}</p>
       <div class="field">
         <label for="today-prompt-weight">{{ _("Weight (kg)") }}</label>
         <input type="text" inputmode="decimal" autocomplete="off" data-decimal-only id="today-prompt-weight" placeholder="{{ _('e.g. 82.4') }}">
@@ -183,18 +185,18 @@
         <button type="button" id="today-prompt-ok">{{ _("OK") }}</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <div class="modal-overlay" id="outlier-prompt" hidden>
+  <dialog class="modal-overlay" id="outlier-prompt" aria-labelledby="outlier-title" aria-describedby="outlier-message">
     <div class="modal-box">
-      <h3>{{ _("Unusual value") }}</h3>
+      <h3 id="outlier-title">{{ _("Unusual value") }}</h3>
       <p id="outlier-message"></p>
       <div class="modal-actions">
         <button type="button" id="outlier-correct" class="button-secondary">{{ _("Correct it") }}</button>
         <button type="button" id="outlier-confirm">{{ _("Save anyway") }}</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
   {# Shown for a few seconds after a weight is cleared in the daily log; Undo saves it back. #}
   <div class="undo-toast" id="undo-toast" role="status" aria-live="polite" hidden>
@@ -204,8 +206,8 @@
   </div>
 
   {# Shown when a background save is refused because the session or its CSRF token has expired. #}
-  <div class="modal-overlay" id="session-expired-prompt" hidden>
-    <div class="modal-box" role="alertdialog" aria-labelledby="session-expired-title" aria-describedby="session-expired-message">
+  <dialog class="modal-overlay" id="session-expired-prompt" role="alertdialog" aria-labelledby="session-expired-title" aria-describedby="session-expired-message">
+    <div class="modal-box">
       {# NOTE: Title of a dialog: the login session has timed out; the page must be reloaded. #}
       <h3 id="session-expired-title">{{ _("Session expired") }}</h3>
       <p id="session-expired-message">{{ _("Your session has expired. Reload the page and try again.") }}</p>
@@ -214,7 +216,7 @@
         <button type="button" id="session-expired-reload">{{ _("Reload page") }}</button>
       </div>
     </div>
-  </div>
+  </dialog>
   {% endif %}
 {% endblock %}
 

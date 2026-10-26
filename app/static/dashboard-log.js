@@ -184,14 +184,24 @@ const outlierCorrectBtn = document.getElementById('outlier-correct');
 const outlierConfirmBtn = document.getElementById('outlier-confirm');
 let pendingOutlierConfirm = null;
 
-function hideOutlierPrompt() {
-  outlierPrompt.hidden = true;
-  pendingOutlierConfirm = null;
+// Opens one of the page's <dialog>s as a modal (see index.html); a second one, such as this
+// question over the "today" prompt, stacks on top.
+function openDialog(dialog) {
+  if (!dialog.open) dialog.showModal();
 }
+
+function hideOutlierPrompt() {
+  outlierPrompt.close();
+}
+
+// However the question closes (a button, Escape), a later "Save anyway" must not reuse its save.
+outlierPrompt.addEventListener('close', () => {
+  pendingOutlierConfirm = null;
+});
 
 function showOutlierPrompt(message, onConfirm, onCorrect) {
   outlierMessage.textContent = message;
-  outlierPrompt.hidden = false;
+  openDialog(outlierPrompt);
   pendingOutlierConfirm = onConfirm;
   outlierCorrectBtn.onclick = () => {
     hideOutlierPrompt();
@@ -203,9 +213,11 @@ function showOutlierPrompt(message, onConfirm, onCorrect) {
 // saved, and only reloading the page gets a fresh token.
 const sessionExpiredPrompt = document.getElementById('session-expired-prompt');
 function showSessionExpired() {
-  sessionExpiredPrompt.hidden = false;
+  openDialog(sessionExpiredPrompt);
   document.getElementById('session-expired-reload').focus();
 }
+// Escape does not dismiss it: nothing can be saved until the page is reloaded.
+sessionExpiredPrompt.addEventListener('cancel', (e) => e.preventDefault());
 document.getElementById('session-expired-reload').addEventListener('click', () => location.reload());
 
 // Saves one day (the daily log and the "today" prompt both use it) and handles what is the
@@ -512,12 +524,12 @@ const todayPromptSkipBtn = document.getElementById('today-prompt-skip');
 const todayPromptOkBtn = document.getElementById('today-prompt-ok');
 
 function hideTodayPrompt() {
-  todayPrompt.hidden = true;
+  todayPrompt.close();
 }
 
 function showTodayPrompt() {
   todayPromptError.hidden = true;
-  todayPrompt.hidden = false;
+  openDialog(todayPrompt);
   todayPromptWeight.focus();
 }
 
@@ -561,14 +573,8 @@ todayPromptWeight.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') todayPromptOkBtn.click();
 });
 
-document.addEventListener('keydown', (e) => {
-  if (e.key !== 'Escape') return;
-  if (!outlierPrompt.hidden) {
-    hideOutlierPrompt();
-  } else if (!todayPrompt.hidden) {
-    rememberTodayPromptSkipped();
-    hideTodayPrompt();
-  }
-});
+// Escape closes the topmost dialog by itself (its cancel event); for the "today" prompt it counts
+// as Skip.
+todayPrompt.addEventListener('cancel', rememberTodayPromptSkipped);
 
 if (todayEntryMissing && !wasTodayPromptSkipped()) showTodayPrompt();

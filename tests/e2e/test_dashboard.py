@@ -147,6 +147,42 @@ def test_a_skipped_today_prompt_stays_away_for_the_day(dashboard, page):
     expect(page.locator("#today-prompt")).to_be_hidden()
 
 
+def test_the_today_prompt_is_a_named_modal_dialog_that_keeps_the_focus(dashboard, page):
+    dashboard(weights=HISTORY)  # nothing today
+    dialog = page.get_by_role("dialog", name="Log today's weight?")
+    expect(dialog).to_be_visible()
+    assert page.evaluate("document.getElementById('today-prompt').matches(':modal')")
+    expect(page.locator("#today-prompt-weight")).to_be_focused()
+    # Tab goes round the dialog (and at most out to the browser), never into the page behind it.
+    for _ in range(8):
+        page.keyboard.press("Tab")
+        assert page.evaluate("""() => {
+            const el = document.activeElement;
+            return el === document.body || el.closest('#today-prompt') !== null;
+        }""")
+
+
+def test_escape_on_the_today_prompt_counts_as_skip(dashboard, page):
+    dashboard(weights=HISTORY)
+    expect(page.locator("#today-prompt")).to_be_visible()
+    page.keyboard.press("Escape")
+    expect(page.locator("#today-prompt")).to_be_hidden()
+    page.reload()
+    page.wait_for_load_state("load")
+    expect(page.locator("#today-prompt")).to_be_hidden()
+
+
+def test_escape_closes_the_unusual_value_question_without_saving(dashboard, live_server, page):
+    user_id = dashboard()
+    type_weight(page, "95")
+    expect(page.get_by_role("dialog", name="Unusual value")).to_be_visible()
+    page.keyboard.press("Escape")
+    expect(page.locator("#outlier-prompt")).to_be_hidden()
+    assert live_server.entry(user_id) == (80.2, None)
+    # Focus is back in the row that asked, not lost at the top of the page.
+    assert page.evaluate("document.activeElement.closest('.day-row')?.dataset.date") == day(0)
+
+
 def test_a_range_button_changes_the_chart_and_is_remembered(dashboard, live_server, page):
     user_id = dashboard(weights=dict.fromkeys(range(40), 80.0))
     with page.expect_response(lambda response: response.url.endswith("/chart-range")) as saved:
@@ -215,6 +251,9 @@ def test_an_expired_session_shows_the_dialog_instead_of_saving(dashboard, live_s
     user_id = dashboard()
     context.clear_cookies()  # as when the session has run out
     type_weight(page, "79,9")
-    expect(page.locator("#session-expired-prompt")).to_be_visible()
+    expect(page.get_by_role("alertdialog", name="Session expired")).to_be_visible()
     expect(row(page).locator(".day-status")).to_have_text("")
+    page.keyboard.press("Escape")  # nothing can be saved until a reload, so it stays
+    expect(page.locator("#session-expired-prompt")).to_be_visible()
+    expect(page.locator("#session-expired-reload")).to_be_focused()
     assert live_server.entry(user_id) == (80.2, None)
