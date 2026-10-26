@@ -312,6 +312,33 @@ def test_dark_mode_switches_at_once_and_is_remembered(dashboard, live_server, pa
     assert live_server.user(user_id).dark_mode is True
 
 
+def _contrast(page, selector):
+    """WCAG contrast ratio of an element's text against its own background colour."""
+    return page.locator(selector).first.evaluate("""el => {
+        const rgb = (value) => value.match(/[\\d.]+/g).slice(0, 3).map(Number);
+        const luminance = (value) => {
+            const [r, g, b] = rgb(value).map((c) => {
+                c /= 255;
+                return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+            });
+            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        };
+        const style = getComputedStyle(el);
+        const [hi, lo] = [luminance(style.color), luminance(style.backgroundColor)].sort((a, b) => b - a);
+        return (hi + 0.05) / (lo + 0.05);
+    }""")
+
+
+@pytest.mark.parametrize("dark", [False, True])
+def test_text_on_the_green_and_red_buttons_is_readable_in_both_themes(dashboard, live_server, page, dark):
+    dashboard(dark_mode=dark)
+    assert _contrast(page, ".range-btn.active") >= 4.5
+    page.goto(live_server.url + "/settings")
+    assert _contrast(page, "button.form-action") >= 4.5  # Save
+    assert _contrast(page, ".button-danger") >= 4.5
+    assert _contrast(page, ".button-warning") >= 4.5
+
+
 @pytest.mark.expected_http_errors  # the refused save is a 400
 def test_an_expired_session_shows_the_dialog_instead_of_saving(dashboard, live_server, context, page):
     user_id = dashboard()

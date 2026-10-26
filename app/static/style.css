@@ -9,6 +9,10 @@
   /* Traffic-light amber, for an action that is not destructive but not routine either. */
   --warning: #f2a007;
   --on-warning: #1b1f1c;
+  /* Text on the green and red buttons: white here; dark in dark mode, where white on the lighter
+     green and red is under the 4.5:1 that WCAG AA asks (2.3:1 and 2.5:1). */
+  --on-accent: #ffffff;
+  --on-danger: #ffffff;
   --chart-line: #198154;
   /* BMI-zone colours for the chart fill and dots: the brighter logo palette
      rather than the UI --danger/--accent. */
@@ -43,6 +47,8 @@ html[data-theme="dark"] {
   --danger: #ff7a70;
   --warning: #ffb627;
   --on-warning: #1b1f1c;
+  --on-accent: #14181a;
+  --on-danger: #14181a;
   --chart-line: #4fc08a;
   --chart-red: #ff6369;
   --chart-green: #3dd68c;
@@ -498,7 +504,7 @@ html[data-theme="dark"] .brand-logo-dark { display: block; }
 
 .range-btn.active {
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
   border-color: var(--accent);
   /* Lifts the selected button off the bar (fresh look 2's shadow). Keyboard focus stays an
      outline, so this shadow cannot hide it. */
@@ -682,7 +688,7 @@ button, .button-link {
   border-radius: 6px;
   border: none;
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -1040,7 +1046,7 @@ code {
 
 .button-danger {
   background: var(--danger);
-  color: #fff;
+  color: var(--on-danger);
 }
 
 .button-warning {
