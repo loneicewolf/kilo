@@ -684,6 +684,52 @@ msgstr "Sesi berakhir"
 msgid "Reload page"
 msgstr "Muat ulang halaman"
 
+# machine-translated
+#. Name of the whole period (the "All" range button) in the chart's description
+#. for screen readers.
+msgid "All weigh-ins"
+msgstr "Semua penimbangan"
+
+# machine-translated
+#. The chart in words, for screen readers. %(period)s is a period such as "3
+#. months"; the weights are such as "82.4 kg".
+#, python-format
+msgid ""
+"%(period)s: from %(first)s on %(first_date)s to %(last)s on %(last_date)s. "
+"Lowest %(lowest)s, highest %(highest)s, average %(average)s."
+msgstr ""
+"%(period)s: dari %(first)s pada %(first_date)s sampai %(last)s pada "
+"%(last_date)s. Terendah %(lowest)s, tertinggi %(highest)s, rata-rata "
+"%(average)s."
+
+# machine-translated
+#. The chart in words, for screen readers, when the period shown has no
+#. weights.
+#, python-format
+msgid "%(period)s: no weigh-ins in this period."
+msgstr "%(period)s: tidak ada penimbangan dalam periode ini."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends lower than it starts."
+msgstr "%(period)s: garis berakhir lebih rendah daripada awalnya."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends higher than it starts."
+msgstr "%(period)s: garis berakhir lebih tinggi daripada awalnya."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends at the same height as it starts."
+msgstr "%(period)s: garis berakhir setinggi awalnya."
+
 #, python-format
 msgid "%(num)d-day average"
 msgid_plural "%(num)d-day average"

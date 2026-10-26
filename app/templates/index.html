@@ -61,8 +61,12 @@
       </div>
       {% endif %}
       <div class="chart-canvas-wrap">
-        <canvas id="weight-chart"></canvas>
+        {# A canvas is only pixels to a screen reader: it gets a name and, in #chart-summary, the
+           shown period in words, which the script rewrites whenever the chart changes
+           (describeChart in dashboard-chart.js). #}
+        <canvas id="weight-chart" role="img" aria-label="{{ _('Weight chart') }}" aria-describedby="chart-summary"></canvas>
       </div>
+      <p class="visually-hidden" id="chart-summary"></p>
     </section>
 
     {% if show_stats %}
@@ -226,6 +230,19 @@
 
 {% block scripts %}
 {# Strings for the script below, read by t(key) (see base.html). %(bmi)s and %(grams)s stay placeholders for the script to fill in. #}
+{# The chart in words, for screen readers (describeChart in dashboard-chart.js). #}
+{# NOTE: Name of the whole period (the "All" range button) in the chart's description for screen readers. #}
+{% set all_weigh_ins = _("All weigh-ins") %}
+{# NOTE: The chart in words, for screen readers. %(period)s is a period such as "3 months"; the weights are such as "82.4 kg". #}
+{% set chart_summary = _("%(period)s: from %(first)s on %(first_date)s to %(last)s on %(last_date)s. Lowest %(lowest)s, highest %(highest)s, average %(average)s.", period="%(period)s", first="%(first)s", first_date="%(first_date)s", last="%(last)s", last_date="%(last_date)s", lowest="%(lowest)s", highest="%(highest)s", average="%(average)s") %}
+{# NOTE: The chart in words, for screen readers, when the period shown has no weights. #}
+{% set chart_empty = _("%(period)s: no weigh-ins in this period.", period="%(period)s") %}
+{# NOTE: The chart in words when the owner hides the weights on the public page: only the line's direction. #}
+{% set chart_lower = _("%(period)s: the line ends lower than it starts.", period="%(period)s") %}
+{# NOTE: The chart in words when the owner hides the weights on the public page: only the line's direction. #}
+{% set chart_higher = _("%(period)s: the line ends higher than it starts.", period="%(period)s") %}
+{# NOTE: The chart in words when the owner hides the weights on the public page: only the line's direction. #}
+{% set chart_level = _("%(period)s: the line ends at the same height as it starts.", period="%(period)s") %}
 <script type="application/json" id="i18n">{{ {
   "weightKg": _("Weight (kg)"),
   "movingAvg": ngettext("%(num)d-day average", "%(num)d-day average", moving_avg_days),
@@ -242,6 +259,12 @@
   "weightRemoved": _("Weight of %(date)s removed.", date="%(date)s"),
   "weightOn": _("Weight on %(date)s", date="%(date)s"),
   "noteFor": _("Note for %(date)s", date="%(date)s"),
+  "rangeNames": dict(chart_range_names, all=all_weigh_ins),
+  "chartSummary": chart_summary,
+  "chartEmpty": chart_empty,
+  "chartLower": chart_lower,
+  "chartHigher": chart_higher,
+  "chartLevel": chart_level,
 }|tojson }}</script>
 {# Everything the scripts below need from the server: dashboard-chart.js reads it as PAGE. The
    chart_* keys are those of routes.overview(), like save_field's answer that replaces them

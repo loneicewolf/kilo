@@ -774,6 +774,41 @@ function padToToday(series, days) {
   return padded;
 }
 
+// The chart in words for screen readers (#chart-summary, the canvas's description): the period, the
+// first and last weigh-in in it, the lowest, highest and average weight. With the weights hidden
+// (a public chart whose owner turned "Show my weight" off) the values are only a 0-100 shape, so
+// it says no more than which way the line goes.
+const chartSummary = document.getElementById('chart-summary');
+
+function describeChart(rangeKey, series) {
+  const period = t('rangeNames')[rangeKey];
+  const points = series.labels
+    .map((label, i) => ({ date: label, value: series.values[i] }))
+    .filter((point, i) => series.reals[i] && point.value != null);
+  if (!points.length) {
+    chartSummary.textContent = t('chartEmpty', { period });
+    return;
+  }
+  const first = points[0];
+  const last = points.at(-1);
+  if (hideWeights) {
+    const key = last.value < first.value ? 'chartLower' : last.value > first.value ? 'chartHigher' : 'chartLevel';
+    chartSummary.textContent = t(key, { period });
+    return;
+  }
+  const values = points.map((point) => point.value);
+  chartSummary.textContent = t('chartSummary', {
+    period,
+    first: weightFormat.format(first.value),
+    first_date: fmtDate(first.date),
+    last: weightFormat.format(last.value),
+    last_date: fmtDate(last.date),
+    lowest: weightFormat.format(Math.min(...values)),
+    highest: weightFormat.format(Math.max(...values)),
+    average: weightFormat.format(values.reduce((a, b) => a + b, 0) / values.length),
+  });
+}
+
 function applyRange(rangeKey) {
   currentRange = rangeKey;
   const days = RANGE_DAYS[rangeKey];
@@ -785,6 +820,8 @@ function applyRange(rangeKey) {
   // so it stays exact regardless of how coarse the bucketing gets.
   const values = inRange.values;
   const overallAvg = values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
+
+  describeChart(rangeKey, inRange);
 
   const padded = padToToday(inRange, days);
   currentDecimated = padded.labels.length > MAX_PLOT_POINTS;

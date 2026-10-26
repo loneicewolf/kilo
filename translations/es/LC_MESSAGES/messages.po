@@ -700,6 +700,51 @@ msgstr "Sesión caducada"
 msgid "Reload page"
 msgstr "Recargar la página"
 
+# machine-translated
+#. Name of the whole period (the "All" range button) in the chart's description
+#. for screen readers.
+msgid "All weigh-ins"
+msgstr "Todos los pesos"
+
+# machine-translated
+#. The chart in words, for screen readers. %(period)s is a period such as "3
+#. months"; the weights are such as "82.4 kg".
+#, python-format
+msgid ""
+"%(period)s: from %(first)s on %(first_date)s to %(last)s on %(last_date)s. "
+"Lowest %(lowest)s, highest %(highest)s, average %(average)s."
+msgstr ""
+"%(period)s: de %(first)s el %(first_date)s a %(last)s el %(last_date)s. "
+"Mínimo %(lowest)s, máximo %(highest)s, promedio %(average)s."
+
+# machine-translated
+#. The chart in words, for screen readers, when the period shown has no
+#. weights.
+#, python-format
+msgid "%(period)s: no weigh-ins in this period."
+msgstr "%(period)s: no hay pesos en este periodo."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends lower than it starts."
+msgstr "%(period)s: la línea termina más abajo de donde empieza."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends higher than it starts."
+msgstr "%(period)s: la línea termina más arriba de donde empieza."
+
+# machine-translated
+#. The chart in words when the owner hides the weights on the public page: only
+#. the line's direction.
+#, python-format
+msgid "%(period)s: the line ends at the same height as it starts."
+msgstr "%(period)s: la línea termina a la misma altura en la que empieza."
+
 #, python-format
 msgid "%(num)d-day average"
 msgid_plural "%(num)d-day average"

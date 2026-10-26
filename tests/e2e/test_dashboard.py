@@ -283,6 +283,36 @@ def test_the_emoji_panel_is_one_tab_stop_with_arrow_keys_inside(dashboard, live_
     expect(textarea).to_be_focused()
 
 
+def shown_date(days_ago):
+    """A date as the page shows it in English (Intl's medium style), such as "Oct 27, 2026"."""
+    d = date.today() - timedelta(days=days_ago)
+    return f"{d:%b} {d.day}, {d.year}"
+
+
+def test_the_chart_is_described_in_words_for_screen_readers(dashboard, page):
+    dashboard()  # 80.2 today, HISTORY before: 80.1, 80.2, 80.0, ... back to 80.1 ten days ago
+    chart = page.get_by_role("img", name="Weight chart")
+    expect(chart).to_have_accessible_description(
+        f"All weigh-ins: from 80.1 kg on {shown_date(10)} to 80.2 kg on {shown_date(0)}. "
+        "Lowest 80.0 kg, highest 80.2 kg, average 80.1 kg.")
+    page.click('.range-btn[data-range="1w"]')
+    expect(chart).to_have_accessible_description(
+        f"1 week: from 80.1 kg on {shown_date(7)} to 80.2 kg on {shown_date(0)}. "
+        "Lowest 80.0 kg, highest 80.2 kg, average 80.1 kg.")
+
+
+def test_the_description_follows_a_save_and_says_when_a_period_is_empty(dashboard, page):
+    dashboard(weights={20: 80.0, 21: 81.0}, chart_range="1w")
+    chart = page.get_by_role("img", name="Weight chart")
+    expect(chart).to_have_accessible_description("1 week: no weigh-ins in this period.")
+    page.click("#today-prompt-skip")
+    type_weight(page, "79,5")
+    expect(row(page).locator(".day-status")).to_have_text("Saved")
+    expect(chart).to_have_accessible_description(
+        f"1 week: from 79.5 kg on {shown_date(0)} to 79.5 kg on {shown_date(0)}. "
+        "Lowest 79.5 kg, highest 79.5 kg, average 79.5 kg.")
+
+
 def test_all_reaches_today_even_when_the_last_entry_is_older(dashboard, page):
     dashboard(weights=dict.fromkeys(range(3, 20), 80.0))  # nothing for the last 3 days
     labels = page.evaluate("chart.data.labels")

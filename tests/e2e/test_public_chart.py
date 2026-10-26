@@ -43,6 +43,22 @@ def test_without_the_weight_the_chart_has_no_numbers_on_its_axis(live_server, pa
     assert page.evaluate("chart.options.plugins.tooltip.enabled") is False
 
 
+def test_the_described_chart_keeps_hidden_weights_hidden(live_server, page):
+    share(live_server, public_show_weight=False)
+    page.goto(live_server.url + "/public/mine")
+    # The weights go from 81.9 kg (19 days ago) down to 80.0 kg today; only the direction is told.
+    expect(page.get_by_role("img", name="Weight chart")).to_have_accessible_description(
+        "All weigh-ins: the line ends lower than it starts.")
+
+
+def test_a_visitor_hears_the_weights_when_the_owner_shows_them(live_server, page):
+    share(live_server)
+    page.goto(live_server.url + "/public/mine")
+    description = page.locator("#chart-summary")
+    expect(description).to_contain_text("from 81.9 kg")
+    expect(description).to_contain_text("to 80.0 kg")
+
+
 def test_a_saved_range_and_theme_apply_without_buttons(live_server, page):
     share(live_server, public_dark_mode=True, public_range="1w")
     page.goto(live_server.url + "/public/mine")
