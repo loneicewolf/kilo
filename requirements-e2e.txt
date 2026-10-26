@@ -4,3 +4,5 @@
 -r requirements-dev.txt
 playwright>=1.64.0
 pytest-playwright>=0.10.0
+# axe-core accessibility checks (tests/e2e/test_accessibility.py); bundles axe.min.js.
+axe-playwright-python>=0.1.8

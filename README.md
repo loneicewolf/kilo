@@ -513,7 +513,9 @@ The browser tests in `tests/e2e/` drive the dashboard and the public chart in a 
 through [Playwright](https://playwright.dev/python/): saving a day, the outlier question, Undo,
 the note editor, the "today" prompt, the range buttons, dark mode and the session-expired
 dialog. They fail on any JavaScript error or Content-Security-Policy violation, and the normal
-`pytest` run leaves them out. To run them (the browser download is a few hundred MB, kept in
+`pytest` run leaves them out. `tests/e2e/test_accessibility.py` also checks every page, and the
+dashboard with its dialogs and menus open, with [axe-core](https://github.com/dequelabs/axe-core)
+in the light and the dark theme: missing names and labels, contrast, headings, ARIA misuse. To run them (the browser download is a few hundred MB, kept in
 `~/.cache/ms-playwright`):
 
 ```bash

@@ -45,10 +45,13 @@
     <a class="skip-link" href="#main">{{ _("Skip to main content") }}</a>
   {% endblock %}
   <header class="site-header">
-    <a class="brand" href="{{ url_for('main.index') }}" aria-label="Kilo Tracker"{% block brand_link_attrs %}{% endblock %}>
-      <img class="brand-logo brand-logo-light" src="{{ url_for('static', filename='kilo-wordmark-light.svg') }}" alt="Kilo Tracker">
-      <img class="brand-logo brand-logo-dark" src="{{ url_for('static', filename='kilo-wordmark-dark.svg') }}" alt="" aria-hidden="true">
-    </a>
+    {# The page's one level-one heading, so the sections' <h2>s sit under it (axe asks for an h1). #}
+    <h1 class="brand-heading">
+      <a class="brand" href="{{ url_for('main.index') }}" aria-label="Kilo Tracker"{% block brand_link_attrs %}{% endblock %}>
+        <img class="brand-logo brand-logo-light" src="{{ url_for('static', filename='kilo-wordmark-light.svg') }}" alt="Kilo Tracker">
+        <img class="brand-logo brand-logo-dark" src="{{ url_for('static', filename='kilo-wordmark-dark.svg') }}" alt="" aria-hidden="true">
+      </a>
+    </h1>
     {% block header_menu %}{% if current_user %}
       <div class="account-menu" id="account-menu">
         <button type="button" class="account-trigger" id="account-trigger" aria-haspopup="true" aria-expanded="false">

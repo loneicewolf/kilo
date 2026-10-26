@@ -118,6 +118,13 @@ main.dashboard-main .flashes {
   gap: 1rem;
 }
 
+/* The logo is the page's <h1> (base.html); it keeps the logo's own size. */
+.brand-heading {
+  display: flex;
+  margin: 0;
+  font-size: inherit;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
