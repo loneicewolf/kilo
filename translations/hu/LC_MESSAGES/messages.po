@@ -370,6 +370,30 @@ msgid "1W"
 msgstr "1h"
 
 # machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 5Y.
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d év"
+msgstr[1] "%(num)d év"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 3M.
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d hónap"
+msgstr[1] "%(num)d hónap"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 2W.
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d hét"
+msgstr[1] "%(num)d hét"
+
+# machine-translated
 #, python-format
 msgid "%(num)d-day change"
 msgid_plural "%(num)d-day change"
@@ -628,8 +652,18 @@ msgid "Weight chart"
 msgstr "Testsúlydiagram"
 
 # machine-translated
-msgid "View or edit note"
-msgstr "Jegyzet megtekintése vagy szerkesztése"
+#. Screen-reader label of the weight field of one day in the daily log;
+#. %(date)s is a date such as 24 Oct 2026.
+#, python-format
+msgid "Weight on %(date)s"
+msgstr "Súly: %(date)s"
+
+# machine-translated
+#. Screen-reader label of the note button of one day in the daily log; %(date)s
+#. is a date such as 24 Oct 2026.
+#, python-format
+msgid "Note for %(date)s"
+msgstr "Jegyzet: %(date)s"
 
 # machine-translated
 msgid "No note"

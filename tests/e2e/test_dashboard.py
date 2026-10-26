@@ -153,10 +153,32 @@ def test_a_range_button_changes_the_chart_and_is_remembered(dashboard, live_serv
         page.click('.range-btn[data-range="1m"]')
     assert saved.value.ok
     expect(page.locator('.range-btn[data-range="1m"]')).to_have_class("range-btn active")
+    expect(page.locator('.range-btn[data-range="1m"]')).to_have_attribute("aria-pressed", "true")
+    expect(page.locator('.range-btn[data-range="all"]')).to_have_attribute("aria-pressed", "false")
     assert page.evaluate("chart.data.labels.length") == 31  # today minus 30 days .. today
     page.reload()
     expect(page.locator('.range-btn[data-range="1m"]')).to_have_class("range-btn active")
     assert live_server.user(user_id).chart_range == "1m"
+
+
+def test_older_days_loaded_while_scrolling_are_named_for_screen_readers(dashboard, page):
+    dashboard(weights=dict.fromkeys(range(40), 80.0))  # more than one page of the log (30 days)
+    page.locator(".entries").evaluate("panel => panel.scrollTo(0, panel.scrollHeight)")
+    older = row(page, 35)  # added by the script, from the empty row template
+    expect(older).to_be_attached()
+    shown = older.locator(".day-date").inner_text()
+    expect(older.locator(".day-weight")).to_have_attribute("aria-label", f"Weight on {shown}")
+    expect(older.locator(".note-btn")).to_have_attribute("aria-label", f"Note for {shown}")
+
+
+def test_a_stat_box_reached_with_the_keyboard_shows_the_focus_outline(dashboard, page):
+    dashboard(weights=dict.fromkeys(range(40), 80.0))
+    box = page.locator(".stat-card-link").first
+    box.focus()
+    page.keyboard.press("Shift+Tab")
+    page.keyboard.press("Tab")  # focus by keyboard, so :focus-visible applies
+    expect(box).to_be_focused()
+    assert box.evaluate("el => getComputedStyle(el).outlineStyle") != "none"
 
 
 def test_all_reaches_today_even_when_the_last_entry_is_older(dashboard, page):

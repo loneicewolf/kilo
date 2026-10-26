@@ -803,6 +803,7 @@ function applyRange(rangeKey) {
 
   document.querySelectorAll('.range-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.range === rangeKey);
+    btn.setAttribute('aria-pressed', String(btn.dataset.range === rangeKey));
   });
 }
 

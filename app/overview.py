@@ -62,6 +62,22 @@ CHART_RANGE_KEYS = {key for key, _label, _days in CHART_RANGES}
 ALWAYS_SHOWN_RANGES = {"1w", "all"}
 
 
+def range_name(key):
+    """The spoken name of a range button ("3 months" for 3M), for screen readers; None for "all",
+    whose label is already a word."""
+    if key == "all":
+        return None
+    num, unit = int(key[:-1]), key[-1]
+    if unit == "y":
+        # NOTE: Screen-reader name of a chart range button such as 5Y.
+        return ngettext("%(num)d year", "%(num)d years", num)
+    if unit == "m":
+        # NOTE: Screen-reader name of a chart range button such as 3M.
+        return ngettext("%(num)d month", "%(num)d months", num)
+    # NOTE: Screen-reader name of a chart range button such as 2W.
+    return ngettext("%(num)d week", "%(num)d weeks", num)
+
+
 CHANGE_PERIODS = (7, 14, 30, 90, 180, 365)
 
 # The chart range each x-day change box jumps to when clicked. The total

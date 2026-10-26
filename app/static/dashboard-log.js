@@ -413,11 +413,20 @@ let oldest = sentinel.dataset.oldest;
 let loading = false;
 let exhausted = !oldest;
 
+// The screen-reader names of a row's weight field and note button, which say the day (the server
+// renders them for its own rows).
+function labelRow(row, isoDate) {
+  const date = fmtDate(isoDate);
+  row.querySelector('.day-weight').setAttribute('aria-label', t('weightOn', { date }));
+  row.querySelector('.note-btn').setAttribute('aria-label', t('noteFor', { date }));
+}
+
 function appendDay(day) {
   // The server renders one empty, translated row for this (the day_row macro in index.html).
   const row = dayRowTemplate.content.firstElementChild.cloneNode(true);
   row.dataset.date = day.date;
   row.querySelector('.day-date').textContent = fmtDate(day.date);
+  labelRow(row, day.date);
   row.querySelector('.day-weight').value = day.weight == null ? '' : inputWeightFormat.format(day.weight);
   row.querySelector('.day-note-value').value = day.note ?? '';
   dayRows.appendChild(row);

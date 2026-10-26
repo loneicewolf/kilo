@@ -316,11 +316,12 @@ html[data-theme="dark"] .brand-logo-dark { display: block; }
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
+/* Keyboard focus keeps the browser's outline, as on the range buttons: the green border alone
+   was hard to see. */
 .stat-card-link:hover,
 .stat-card-link:focus-visible {
   border-color: var(--accent);
   background: var(--bg);
-  outline: none;
 }
 
 .stat-label {

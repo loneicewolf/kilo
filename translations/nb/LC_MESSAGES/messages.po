@@ -368,6 +368,30 @@ msgid "1W"
 msgstr "1U"
 
 # machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 5Y.
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d år"
+msgstr[1] "%(num)d år"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 3M.
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d måned"
+msgstr[1] "%(num)d måneder"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 2W.
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d uke"
+msgstr[1] "%(num)d uker"
+
+# machine-translated
 #, python-format
 msgid "%(num)d-day change"
 msgid_plural "%(num)d-day change"
@@ -629,8 +653,18 @@ msgid "Weight chart"
 msgstr "Vektdiagram"
 
 # machine-translated
-msgid "View or edit note"
-msgstr "Se eller rediger notat"
+#. Screen-reader label of the weight field of one day in the daily log;
+#. %(date)s is a date such as 24 Oct 2026.
+#, python-format
+msgid "Weight on %(date)s"
+msgstr "Vekt den %(date)s"
+
+# machine-translated
+#. Screen-reader label of the note button of one day in the daily log; %(date)s
+#. is a date such as 24 Oct 2026.
+#, python-format
+msgid "Note for %(date)s"
+msgstr "Notat for %(date)s"
 
 # machine-translated
 msgid "No note"

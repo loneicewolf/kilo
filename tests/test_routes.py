@@ -17,6 +17,7 @@ Saving entries is in test_entries.py, the settings in test_settings.py, import a
 test_import_export.py. This file also guards every route: see PUBLIC_ENDPOINTS.
 """
 
+import json
 import os
 import re
 from datetime import date, timedelta
@@ -157,6 +158,43 @@ def _range_buttons(html):
         key = re.search(r'data-range="(\w+)"', tag).group(1)
         result[key] = {"hidden": " hidden" in tag, "active": "active" in tag}
     return result
+
+
+def test_range_buttons_say_which_is_selected_and_what_they_mean(logged_in_client, app):
+    client, user_id = logged_in_client
+    _add_entry(app, user_id, days_ago=0)
+    _add_entry(app, user_id, days_ago=40)
+    client.post("/chart-range", json={"range": "1m"})
+
+    tags = {re.search(r'data-range="(\w+)"', tag).group(1): tag
+            for tag in re.findall(r"<button\b[^>]*data-range=[^>]*>", client.get("/").data.decode())}
+    assert 'aria-pressed="true"' in tags["1m"]
+    assert all('aria-pressed="false"' in tag for key, tag in tags.items() if key != "1m")
+    # The letters are read out as words; "All" already is one.
+    assert 'aria-label="1 month"' in tags["1m"]
+    assert 'aria-label="3 months"' in tags["3m"]
+    assert 'aria-label="2 weeks"' in tags["2w"]
+    assert 'aria-label="20 years"' in tags["20y"]
+    assert "aria-label" not in tags["all"]
+    de = client.get("/?lang=de").data.decode()
+    assert 'aria-label="3 Monate"' in re.search(r'<button\b[^>]*data-range="3m"[^>]*>', de).group(0)
+
+
+def test_daily_log_fields_are_named_after_their_day(logged_in_client, app):
+    client, user_id = logged_in_client
+    _add_entry(app, user_id, days_ago=0)
+    html = client.get("/?lang=en").data.decode()
+    today = date.today()
+    shown = f"{today:%b} {today.day}, {today.year}"  # Babel's medium date in English
+    row = re.search(rf'<div class="day-row" data-date="{today.isoformat()}">(.*?)</div>', html, re.S).group(1)
+    assert f'aria-label="Weight on {shown}"' in row
+    assert f'aria-label="Note for {shown}"' in row
+    # The empty row the script copies for older days gets its labels from the script (labelRow).
+    template = re.search(r'<template id="day-row-template">(.*?)</template>', html, re.S).group(1)
+    assert 'class="day-weight"' in template and "aria-label" not in template.split('class="note-popover"')[0]
+    i18n_block = re.search(r'<script type="application/json" id="i18n">(\{.*?\})</script>', html, re.S)
+    strings = json.loads(i18n_block.group(1))
+    assert strings["weightOn"] == "Weight on %(date)s" and strings["noteFor"] == "Note for %(date)s"
 
 
 def test_chart_range_default_is_all_with_only_always_shown_buttons(logged_in_client):

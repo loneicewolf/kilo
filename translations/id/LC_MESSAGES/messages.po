@@ -294,6 +294,27 @@ msgstr "2M"
 msgid "1W"
 msgstr "1M"
 
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 5Y.
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] "%(num)d tahun"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 3M.
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] "%(num)d bulan"
+
+# machine-translated
+#. NOTE: Screen-reader name of a chart range button such as 2W.
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] "%(num)d minggu"
+
 #, python-format
 msgid "%(num)d-day change"
 msgid_plural "%(num)d-day change"
@@ -510,8 +531,19 @@ msgstr "Kembali ke halaman awal"
 msgid "Weight chart"
 msgstr "Grafik berat badan"
 
-msgid "View or edit note"
-msgstr "Lihat atau ubah catatan"
+# machine-translated
+#. Screen-reader label of the weight field of one day in the daily log;
+#. %(date)s is a date such as 24 Oct 2026.
+#, python-format
+msgid "Weight on %(date)s"
+msgstr "Berat pada %(date)s"
+
+# machine-translated
+#. Screen-reader label of the note button of one day in the daily log; %(date)s
+#. is a date such as 24 Oct 2026.
+#, python-format
+msgid "Note for %(date)s"
+msgstr "Catatan untuk %(date)s"
 
 msgid "No note"
 msgstr "Tanpa catatan"

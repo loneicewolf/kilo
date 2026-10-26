@@ -48,7 +48,15 @@ from app.forms import ImportForm, PublicChartForm, SettingsForm, SignupForm
 from app.i18n import LANGUAGE_COOKIE, LANGUAGE_COOKIE_DAYS, meters
 from app.importing import parse_import
 from app.models import User, WeightEntry
-from app.overview import CHART_RANGE_KEYS, CHART_RANGES, GRID_PAGE_SIZE, entries_sorted, grid_page, overview
+from app.overview import (
+    CHART_RANGE_KEYS,
+    CHART_RANGES,
+    GRID_PAGE_SIZE,
+    entries_sorted,
+    grid_page,
+    overview,
+    range_name,
+)
 from app.security import log_event
 from app.sessions import get_current_user, login_required
 from app.utils import NOTE_MAX_LENGTH, height_from_cm, height_to_cm, parse_decimal
@@ -144,6 +152,7 @@ def _chart_context(user, chart_data):
         "chart_ranges": CHART_RANGES,
         "chart_range_days": {key: days for key, _label, days in CHART_RANGES},
         "chart_range_labels": {key: str(label) for key, label, _days in CHART_RANGES},
+        "chart_range_names": {key: range_name(key) for key in CHART_RANGE_KEYS},
         "chart_range": chart_range,
         "height_cm": user.height_cm,
         **chart_data,
