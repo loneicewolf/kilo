@@ -13,16 +13,18 @@
 
 {% macro day_row(day) %}
   <div class="day-row"{% if day %} data-date="{{ day.date }}"{% endif %}>
-    <span class="day-date">{{ day.date|localdate if day }}</span>
+    {# Hidden from screen readers: the field's label says the date in full ("October 24, 2026"),
+       where this short one would be read as "Oct". #}
+    <span class="day-date" aria-hidden="true">{{ day.date|localdate if day }}</span>
     {# The labels name the day, so a screen reader says more than "edit text" in every row; the
        script fills them in for the rows it adds (labelRow in dashboard-log.js). #}
     <input type="text" inputmode="decimal" autocomplete="off" data-decimal-only class="day-weight" value="{{ day.weight|decimal_input if day and day.weight is not none else '' }}" placeholder="—"
            {#- NOTE: Screen-reader label of the weight field of one day in the daily log; %(date)s is a date such as 24 Oct 2026. #}
-           {%- if day %} aria-label="{{ _('Weight on %(date)s', date=day.date|localdate) }}"{% endif %}>
+           {%- if day %} aria-label="{{ _('Weight on %(date)s', date=day.date|localdate('long')) }}"{% endif %}>
     <span class="note-wrap">
       <button type="button" class="note-btn{{ ' has-note' if day and day.note }}"
               {#- NOTE: Screen-reader label of the note button of one day in the daily log; %(date)s is a date such as 24 Oct 2026. #}
-              {%- if day %} aria-label="{{ _('Note for %(date)s', date=day.date|localdate) }}"{% endif %}>📝</button>
+              {%- if day %} aria-label="{{ _('Note for %(date)s', date=day.date|localdate('long')) }}"{% endif %}>📝</button>
       <span class="note-preview">{{ (day.note if day) or _('No note') }}</span>
       <div class="note-popover" hidden>
         <textarea class="note-textarea" maxlength="{{ NOTE_MAX_LENGTH }}" placeholder="{{ _('Add a note…') }}"></textarea>

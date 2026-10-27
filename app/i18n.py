@@ -162,11 +162,13 @@ def decimal_input(value):
     return format_decimal(value, format="0.0#")
 
 
-def localdate(value):
-    """A date (or ISO date string) in the locale's medium format, e.g. `1 sep 2026`."""
+def localdate(value, style="medium"):
+    """A date (or ISO date string) in the locale's medium format, e.g. `1 sep 2026`; `style="long"`
+    spells the month out (`1 september 2026`), for text a screen reader reads aloud: it says "Sep"
+    as written."""
     if isinstance(value, str):
         value = date.fromisoformat(value)
-    return format_date(value, format="medium")
+    return format_date(value, format=style)
 
 
 def init_app(app):

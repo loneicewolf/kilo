@@ -95,7 +95,7 @@ def test_a_cleared_weight_comes_back_with_its_note_after_undo(dashboard, live_se
     user_id = dashboard(notes={0: "after the party"})
     type_weight(page, "")
     expect(page.locator("#undo-toast")).to_be_visible()
-    expect(page.locator("#undo-message")).to_contain_text("removed")
+    expect(page.locator("#undo-message")).to_have_text(f"Weight of {shown_date(0)} removed.")
     assert live_server.entry(user_id) is None
     page.click("#undo-btn")
     expect(row(page).locator(".day-status")).to_have_text("Saved")
@@ -197,14 +197,21 @@ def test_a_range_button_changes_the_chart_and_is_remembered(dashboard, live_serv
     assert live_server.user(user_id).chart_range == "1m"
 
 
+def shown_date(days_ago, month="%B"):
+    """A date in English as the page gives it to a screen reader, "October 27, 2026" (Intl's long
+    style), or with month="%b" as it shows it on screen, "Oct 27, 2026"."""
+    d = date.today() - timedelta(days=days_ago)
+    return f"{d:{month}} {d.day}, {d.year}"
+
+
 def test_older_days_loaded_while_scrolling_are_named_for_screen_readers(dashboard, page):
     dashboard(weights=dict.fromkeys(range(40), 80.0))  # more than one page of the log (30 days)
     page.locator(".entries").evaluate("panel => panel.scrollTo(0, panel.scrollHeight)")
     older = row(page, 35)  # added by the script, from the empty row template
     expect(older).to_be_attached()
-    shown = older.locator(".day-date").inner_text()
-    expect(older.locator(".day-weight")).to_have_attribute("aria-label", f"Weight on {shown}")
-    expect(older.locator(".note-btn")).to_have_attribute("aria-label", f"Note for {shown}")
+    expect(older.locator(".day-date")).to_have_text(shown_date(35, "%b"))  # short on screen
+    expect(older.locator(".day-weight")).to_have_attribute("aria-label", f"Weight on {shown_date(35)}")
+    expect(older.locator(".note-btn")).to_have_attribute("aria-label", f"Note for {shown_date(35)}")
 
 
 def test_a_stat_box_reached_with_the_keyboard_shows_the_focus_outline(dashboard, page):
@@ -283,10 +290,6 @@ def test_the_emoji_panel_is_one_tab_stop_with_arrow_keys_inside(dashboard, live_
     expect(textarea).to_be_focused()
 
 
-def shown_date(days_ago):
-    """A date as the page shows it in English (Intl's medium style), such as "Oct 27, 2026"."""
-    d = date.today() - timedelta(days=days_ago)
-    return f"{d:%b} {d.day}, {d.year}"
 
 
 def test_the_chart_is_described_in_words_for_screen_readers(dashboard, page):

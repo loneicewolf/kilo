@@ -487,6 +487,17 @@ def test_the_metres_filter_always_ends_in_the_m_symbol(app, lang):
     assert text in ("1.86 m", "1,86 m"), (lang, text)
 
 
+@pytest.mark.parametrize(("lang", "medium", "long"), [
+    ("en", "Oct 24, 2026", "October 24, 2026"),
+    ("nl", "24 okt 2026", "24 oktober 2026"),
+])
+def test_the_date_filter_spells_the_month_out_for_screen_readers(app, lang, medium, long):
+    from app.i18n import localdate
+
+    with app.test_request_context(f"/?lang={lang}"):
+        assert (localdate("2026-10-24"), localdate("2026-10-24", "long")) == (medium, long)
+
+
 # --- the language menu (routes.set_language, the kilo_lang cookie) ------------------------------
 
 def pick(client, language, referrer="http://localhost/about"):

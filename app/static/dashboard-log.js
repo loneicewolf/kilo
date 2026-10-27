@@ -323,7 +323,7 @@ function hideUndo() {
 
 function offerUndo(date, action) {
   clearTimeout(undoTimer);
-  undoMessage.textContent = t('weightRemoved', { date: fmtDate(date) });
+  undoMessage.textContent = t('weightRemoved', { date: fmtLongDate(date) }); // announced (role="status")
   undoAction = action;
   undoDate = date;
   undoToast.hidden = false;
@@ -482,7 +482,7 @@ let exhausted = !oldest;
 // The screen-reader names of a row's weight field and note button, which say the day (the server
 // renders them for its own rows).
 function labelRow(row, isoDate) {
-  const date = fmtDate(isoDate);
+  const date = fmtLongDate(isoDate);
   row.querySelector('.day-weight').setAttribute('aria-label', t('weightOn', { date }));
   row.querySelector('.note-btn').setAttribute('aria-label', t('noteFor', { date }));
 }

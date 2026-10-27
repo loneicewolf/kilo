@@ -59,6 +59,13 @@ function localIso(date) {
 function fmtDate(iso) {
   return dateFormat.format(parseIsoDate(iso));
 }
+
+// The month spelled out ("October 24, 2026"), for text a screen reader reads aloud: it says the
+// short style's "Oct" as written.
+const longDateFormat = new Intl.DateTimeFormat(LOCALE, { dateStyle: 'long' });
+function fmtLongDate(iso) {
+  return longDateFormat.format(parseIsoDate(iso));
+}
 // Starts with a capital, like a title (most languages write weekdays in lower case).
 function fmtWeekdayDate(iso) {
   const text = weekdayDateFormat.format(parseIsoDate(iso));
@@ -800,9 +807,9 @@ function describeChart(rangeKey, series) {
   chartSummary.textContent = t('chartSummary', {
     period,
     first: weightFormat.format(first.value),
-    first_date: fmtDate(first.date),
+    first_date: fmtLongDate(first.date),
     last: weightFormat.format(last.value),
-    last_date: fmtDate(last.date),
+    last_date: fmtLongDate(last.date),
     lowest: weightFormat.format(Math.min(...values)),
     highest: weightFormat.format(Math.max(...values)),
     average: weightFormat.format(values.reduce((a, b) => a + b, 0) / values.length),

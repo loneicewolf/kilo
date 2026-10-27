@@ -185,10 +185,11 @@ def test_daily_log_fields_are_named_after_their_day(logged_in_client, app):
     _add_entry(app, user_id, days_ago=0)
     html = client.get("/?lang=en").data.decode()
     today = date.today()
-    shown = f"{today:%b} {today.day}, {today.year}"  # Babel's medium date in English
+    spoken = f"{today:%B} {today.day}, {today.year}"  # the month in full: a screen reader says "Oct" as written
     row = re.search(rf'<div class="day-row" data-date="{today.isoformat()}">(.*?)</div>', html, re.S).group(1)
-    assert f'aria-label="Weight on {shown}"' in row
-    assert f'aria-label="Note for {shown}"' in row
+    assert f'aria-label="Weight on {spoken}"' in row
+    assert f'aria-label="Note for {spoken}"' in row
+    assert f'<span class="day-date" aria-hidden="true">{today:%b} {today.day}, {today.year}</span>' in row
     # The empty row the script copies for older days gets its labels from the script (labelRow).
     template = re.search(r'<template id="day-row-template">(.*?)</template>', html, re.S).group(1)
     assert 'class="day-weight"' in template and "aria-label" not in template.split('class="note-popover"')[0]
