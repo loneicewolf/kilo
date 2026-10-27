@@ -113,6 +113,24 @@ def test_the_settings_page(signed_in, page, dark):
 
 
 @both_themes
+def test_a_success_notice(signed_in, page, dark):
+    signed_in("/settings", dark)
+    page.locator("button.form-action").first.click()
+    page.locator(".flashes .flash-success").wait_for()
+    assert_accessible(page)
+
+
+@both_themes
+def test_an_error_notice(signed_in, page, dark):
+    signed_in("/settings", dark)
+    page.set_input_files("#import-form input[type=file]",
+                         {"name": "empty.csv", "mimeType": "text/csv", "buffer": b"\n"})
+    page.click("#import-form button[type=submit]")  # "No rows found in the file."
+    page.locator(".flashes .flash-error").wait_for()
+    assert_accessible(page)
+
+
+@both_themes
 def test_the_remove_my_data_page(signed_in, page, dark):
     signed_in("/settings/remove", dark)
     assert_accessible(page)
