@@ -32,11 +32,14 @@ pytestmark = pytest.mark.e2e
 both_themes = pytest.mark.parametrize("dark", [False, True], ids=["light", "dark"])
 
 AXE = axe_playwright.Axe()
+# axe's default rules, plus one it ships switched off as experimental: a visible label must be part of
+# the accessible name (WCAG 2.5.3), which the range buttons once broke ("3M" named "3 months").
+AXE_OPTIONS = {"resultTypes": ["violations"], "rules": {"label-content-name-mismatch": {"enabled": True}}}
 
 
 def assert_accessible(page):
     """Fail with axe's findings, one line per rule and element, so the report says what to fix."""
-    violations = AXE.run(page).response["violations"]
+    violations = AXE.run(page, options=AXE_OPTIONS).response["violations"]
     found = [f"{v['id']} ({v['impact']}): {v['help']} at {node['target']}" for v in violations for node in v["nodes"]]
     assert not found, f"{page.url}\n" + "\n".join(found)
 

@@ -170,14 +170,16 @@ def test_range_buttons_say_which_is_selected_and_what_they_mean(logged_in_client
             for tag in re.findall(r"<button\b[^>]*data-range=[^>]*>", client.get("/").data.decode())}
     assert 'aria-pressed="true"' in tags["1m"]
     assert all('aria-pressed="false"' in tag for key, tag in tags.items() if key != "1m")
-    # The letters are read out as words; "All" already is one.
-    assert 'aria-label="1 month"' in tags["1m"]
-    assert 'aria-label="3 months"' in tags["3m"]
-    assert 'aria-label="2 weeks"' in tags["2w"]
-    assert 'aria-label="20 years"' in tags["20y"]
-    assert "aria-label" not in tags["all"]
+    # The letters are spelled out in the title (tooltip and screen-reader description); the name stays
+    # the visible text, so no aria-label. "All" already is a word.
+    assert 'title="1 month"' in tags["1m"]
+    assert 'title="3 months"' in tags["3m"]
+    assert 'title="2 weeks"' in tags["2w"]
+    assert 'title="20 years"' in tags["20y"]
+    assert "title=" not in tags["all"]
+    assert not any("aria-label" in tag for tag in tags.values())
     de = client.get("/?lang=de").data.decode()
-    assert 'aria-label="3 Monate"' in re.search(r'<button\b[^>]*data-range="3m"[^>]*>', de).group(0)
+    assert 'title="3 Monate"' in re.search(r'<button\b[^>]*data-range="3m"[^>]*>', de).group(0)
 
 
 def test_daily_log_fields_are_named_after_their_day(logged_in_client, app):

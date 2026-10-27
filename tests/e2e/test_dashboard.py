@@ -190,6 +190,9 @@ def test_a_range_button_changes_the_chart_and_is_remembered(dashboard, live_serv
     assert saved.value.ok
     expect(page.locator('.range-btn[data-range="1m"]')).to_have_class("range-btn active")
     expect(page.locator('.range-btn[data-range="1m"]')).to_have_attribute("aria-pressed", "true")
+    # A screen reader says what is on the button, then what it means.
+    expect(page.locator('.range-btn[data-range="1m"]')).to_have_accessible_name("1M")
+    expect(page.locator('.range-btn[data-range="1m"]')).to_have_accessible_description("1 month")
     expect(page.locator('.range-btn[data-range="all"]')).to_have_attribute("aria-pressed", "false")
     assert page.evaluate("chart.data.labels.length") == 31  # today minus 30 days .. today
     page.reload()

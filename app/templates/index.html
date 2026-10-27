@@ -55,7 +55,9 @@
               class="range-btn{{ ' active' if key == chart_range }}"
               data-range="{{ key }}"
               aria-pressed="{{ 'true' if key == chart_range else 'false' }}"
-              {%- if chart_range_names[key] %} aria-label="{{ chart_range_names[key] }}"{% endif %}
+              {#- The spoken name stays the visible "3M" (WCAG 2.5.3, label in name); "3 months" is the
+                  title: a tooltip, and the description a screen reader adds. #}
+              {%- if chart_range_names[key] %} title="{{ chart_range_names[key] }}"{% endif %}
               {{ 'hidden' if key not in available_ranges }}
             >{{ label }}</button>
           {% endfor %}
