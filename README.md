@@ -205,8 +205,10 @@ sign-in, after which the email code is asked for again. Logging out removes it, 
 **Settings → Sign out everywhere** ends every other session of that user (each cookie carries a
 number that this raises, so older cookies, copied ones included, stop working). The cookie is
 signed with `SECRET_KEY` (anyone who knows the key can forge a sign-in, so keep it secret and
-constant; changing it signs everyone out) and holds the signed-in address, so with
-`SESSION_COOKIE_SECURE=1` it is only sent over HTTPS.
+constant; changing it signs everyone out). The cookie is not encrypted itself, so the
+signed-in address in it is: with a key derived from `SECRET_KEY` (`app/session_address.py`), so
+someone who sees the cookie cannot read the address. With `SESSION_COOKIE_SECURE=1` it is only
+sent over HTTPS.
 
 Every response carries a strict Content-Security-Policy (`app/csp.py`): scripts, styles,
 images and `fetch()` calls may only come from Kilo itself, forms only post to Kilo, and the

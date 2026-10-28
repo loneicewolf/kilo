@@ -24,9 +24,10 @@ from pathlib import Path
 import pytest
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
+from flask import session
 from werkzeug.security import generate_password_hash
 
-from app import codes, create_app, db, mail
+from app import codes, create_app, db, mail, session_address
 from app.models import User
 
 # The project's top folder, for tests that read its files.
@@ -152,6 +153,16 @@ def input_attrs(page, name):
     finder.feed(page if isinstance(page, str) else page.get_data(as_text=True))
     assert finder.found is not None, f'no <input name="{name}"> on the page'
     return finder.found
+
+
+def session_address_of(client, key=session_address.SIGNED_IN):
+    """The address `client`'s session cookie holds (encrypted) under `key`, or None."""
+    with client.session_transaction() as sess:
+        token = sess.get(key)
+    with client.application.test_request_context():
+        if token is not None:
+            session[key] = token
+        return session_address.read(key)
 
 
 def signup_and_verify(client, email):

@@ -21,7 +21,7 @@ import pytest
 from app import db, mail
 from app.models import User
 from app.utils import hash_email
-from tests.conftest import code_from, flashes
+from tests.conftest import code_from, flashes, session_address_of
 
 
 def test_signup_sends_code_and_creates_unverified_user(client, app):
@@ -51,7 +51,7 @@ def test_verify_with_correct_code_signs_in(client, app):
 
     with client.session_transaction() as sess:
         assert sess.get("user_id") == user.id
-        assert "pending_email" not in sess
+        assert "pending_address" not in sess
 
 
 def test_a_used_code_cannot_sign_in_again(client, app):
@@ -66,7 +66,7 @@ def test_a_used_code_cannot_sign_in_again(client, app):
     # Someone who saw the code (another browser waiting on the same address) is too late.
     other = app.test_client()
     with other.session_transaction() as sess:
-        sess["pending_email"] = "used@example.com"
+        sess["pending_email"] = "used@example.com"  # readable, as in a cookie from before the encryption
     resp = other.post("/verify", data={"code": code}, follow_redirects=True)
     assert b"That code has expired" in resp.data
     with other.session_transaction() as sess:
@@ -165,7 +165,7 @@ def test_a_sign_in_whose_account_is_gone_is_forgotten(client, app, request_page)
     assert resp.status_code == 302 and resp.headers["Location"].endswith("/signup")
     assert outbox == [] and _flashes(client) == []  # no account was made again, nothing was sent
     with client.session_transaction() as sess:
-        assert "pending_email" not in sess
+        assert "pending_address" not in sess
     with app.app_context():
         assert User.query.filter_by(email_hash=hash_email("gone@example.com")).first() is None
 
@@ -183,8 +183,7 @@ def test_signup_remembers_the_address_and_says_the_code_was_sent(client, app, co
     assert resp.status_code == 302 and resp.headers["Location"].endswith("/verify")
     assert len(outbox) == (0 if cooldown else 1)
     assert _flashes(client) == ["We sent a verification code to twice@example.com."]
-    with client.session_transaction() as sess:
-        assert sess["pending_email"] == "twice@example.com"
+    assert session_address_of(client, "pending_address") == "twice@example.com"
 
 
 def test_the_code_field_takes_six_digits_with_a_number_keyboard(app, logged_in_client):

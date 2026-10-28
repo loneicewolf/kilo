@@ -25,7 +25,7 @@ from functools import wraps
 from flask import current_app, flash, redirect, request, session, url_for
 from flask_babel import get_locale, gettext as _
 
-from app import db
+from app import db, session_address
 from app.models import User
 
 
@@ -71,7 +71,10 @@ def keep_session_alive():
     everywhere" (account.sign_out_everywhere). A session without one counts as 0, never as the
     current number: adopting it would let a copied cookie from before that survive.
     """
-    if "user_id" not in session or request.endpoint == "static":
+    if request.endpoint == "static":
+        return
+    session_address.adopt_plaintext()
+    if "user_id" not in session:
         return
     user = db.session.get(User, session["user_id"])
     if user is not None and session.get("session_version", 0) != user.session_version:
@@ -93,6 +96,6 @@ def inject_current_user():
     return {
         "current_locale": str(get_locale()),
         "current_user": user,
-        "current_email": session.get("email"),
+        "current_email": session_address.signed_in(),
         "theme": "dark" if user and user.dark_mode else "light",
     }

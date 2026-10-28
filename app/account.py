@@ -22,7 +22,7 @@ all their weight entries.
 from flask import Blueprint, flash, redirect, render_template, session, url_for
 from flask_babel import gettext as _
 
-from app import avatar, codes, db, ratelimit
+from app import avatar, codes, db, ratelimit, session_address
 from app.email_utils import send_deletion_email
 from app.forms import VerifyCodeForm
 from app.security import log_event
@@ -59,7 +59,7 @@ def remove_data():
         form=VerifyCodeForm(),
         exported=bool(session.get("data_exported")),
         code_pending=codes.is_pending(user, "removal"),
-        email=session.get("email"),
+        email=session_address.signed_in(),
         ttl_minutes=DELETE_CODE_TTL_MINUTES,
     )
 
@@ -69,7 +69,7 @@ def remove_data():
 def send_removal_code():
     """Email a new confirmation code. Needs a data download earlier in this session."""
     user = get_current_user()
-    email = session.get("email")
+    email = session_address.signed_in()
     if not session.get("data_exported"):
         flash(_("Download your data first."), "error")
         return redirect(url_for("account.remove_data"))

@@ -94,7 +94,7 @@ def test_without_the_address_in_the_session_no_code_is_sent(logged_in_client):
     client, _ = logged_in_client
     client.get("/settings/export")
     with client.session_transaction() as sess:
-        del sess["email"]
+        del sess["address"]
     outbox = _request_code(client)
     assert outbox == []
     assert "Sign in again to confirm this request." in flashes(client.get("/settings/remove"), "error")

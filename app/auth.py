@@ -25,7 +25,7 @@ import time
 from flask import Blueprint, flash, redirect, render_template, session, url_for
 from flask_babel import gettext as _
 
-from app import codes, db, ratelimit
+from app import codes, db, ratelimit, session_address
 from app.email_utils import send_verification_email
 from app.errors import back_url
 from app.forms import SignupForm, VerifyCodeForm
@@ -71,7 +71,7 @@ def signup():
 def _to_verify(email):
     """After a code was sent (or one is on its way) to `email`: remember the address and go to
     the page that asks for the code."""
-    session["pending_email"] = email
+    session_address.store(session_address.PENDING, email)
     flash(_("We sent a verification code to %(email)s.", email=email), "success")
     return redirect(url_for("auth.verify"))
 
@@ -79,12 +79,12 @@ def _to_verify(email):
 def _pending_user():
     """(address, user) of the sign-in in progress: (None, None) without one. The address is
     forgotten when its account is gone (the cleanup removed it), with user None."""
-    email = session.get("pending_email")
+    email = session_address.read(session_address.PENDING)
     if not email:
         return None, None
     user = User.query.filter_by(email_hash=hash_email(email)).first()
     if user is None:
-        session.pop("pending_email", None)
+        session.pop(session_address.PENDING, None)
     return email, user
 
 
@@ -111,9 +111,9 @@ def verify():
             user.verified_at = user.verified_at or utcnow()
             codes.clear(user, "signin")
             db.session.commit()
-            session.pop("pending_email", None)
+            session.pop(session_address.PENDING, None)
             session["user_id"] = user.id
-            session["email"] = email
+            session_address.store(session_address.SIGNED_IN, email)
             session["login_at"] = int(time.time())
             session["session_version"] = user.session_version
             session.permanent = True  # the cookie outlives the browser window, see sessions.keep_session_alive

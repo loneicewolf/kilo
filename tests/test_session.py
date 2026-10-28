@@ -132,7 +132,7 @@ def test_after_90_days_the_user_must_sign_in_again(logged_in_client):
     response = client.get("/settings")
     assert response.status_code == 302  # sent back to ask for the address
     with client.session_transaction() as session:
-        assert "user_id" not in session and "email" not in session and "login_at" not in session
+        assert "user_id" not in session and "address" not in session and "login_at" not in session
 
 
 def test_just_before_90_days_the_user_is_still_signed_in(logged_in_client):
@@ -171,7 +171,7 @@ def test_signing_out_forgets_everything(logged_in_client):
     response = client.post("/logout")
     assert response.status_code == 302
     with client.session_transaction() as session:
-        for key in ("user_id", "email", "login_at", "data_exported"):
+        for key in ("user_id", "address", "login_at", "data_exported"):
             assert key not in session, key
         assert not session.permanent
     cookie = session_cookie(response)
@@ -249,7 +249,7 @@ def test_signing_out_everywhere_ends_the_other_sessions_but_not_this_one(two_dev
     assert signed_in(laptop)
     assert not signed_in(phone)
     with phone.session_transaction() as sess:
-        assert "user_id" not in sess and "email" not in sess  # the old cookie is emptied
+        assert "user_id" not in sess and "address" not in sess  # the old cookie is emptied
 
 
 def test_a_copied_cookie_stops_working_too(app, two_devices):

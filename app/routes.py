@@ -41,7 +41,7 @@ from flask import (
 from flask_babel import format_date, format_decimal, gettext as _, ngettext
 from sqlalchemy.exc import IntegrityError
 
-from app import avatar, db
+from app import avatar, db, session_address
 from app.csv_io import MAX_WEIGHT_KG, MIN_WEIGHT_KG, ImportFileError, export_csv
 from app.errors import back_url
 from app.forms import ImportForm, PublicChartForm, SettingsForm, SignupForm
@@ -437,7 +437,7 @@ def _render_settings(user, form=None, public_form=None):
         public_form.public_show_weight.data = user.public_show_weight
         public_form.public_show_stats.data = user.public_stats_shown
         public_form.public_dark_mode.data = user.public_dark_mode
-        public_form.public_id.data = user.public_id or propose_public_id(session.get("email"))
+        public_form.public_id.data = user.public_id or propose_public_id(session_address.signed_in())
     if not public_form.public_show_weight.data:
         public_form.public_show_stats.data = False  # shown switched off and greyed out
     return render_template(
@@ -491,7 +491,7 @@ def set_public_chart():
     # anything unknown: the visitor chooses.
     range_key = request.form.get("public_range", "")
     user.public_range = range_key if range_key in CHART_RANGE_KEYS else None
-    user.public_id = form.public_id.data or propose_public_id(session.get("email"))
+    user.public_id = form.public_id.data or propose_public_id(session_address.signed_in())
     try:
         db.session.commit()
     except IntegrityError:
@@ -518,7 +518,7 @@ def export_entries():
     return Response(
         csv_text,
         mimetype="text/csv",
-        headers={"Content-Disposition": f'attachment; filename="{export_filename(session.get("email"))}"'},
+        headers={"Content-Disposition": f'attachment; filename="{export_filename(session_address.signed_in())}"'},
     )
 
 
