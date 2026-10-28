@@ -107,7 +107,7 @@ def test_a_forged_path_cannot_get_another_address_banned(security_app):
 def test_routine_requests_and_unknown_visitors_are_never_banned(security_app):
     build, log = security_app
     client = build().test_client()
-    client.get("/favicon.ico", headers={"X-Real-IP": REAL})  # not even logged
+    client.get("/apple-touch-icon.png", headers={"X-Real-IP": REAL})  # not even logged
     client.get("/nothing-here")  # no X-Real-IP: logged as ip=-
     (line,) = lines_of(log)
     assert "ip=-" in line and banned("kilo-notfound", line) is None

@@ -27,7 +27,7 @@ from sqlalchemy import event
 
 from app import db
 from app.models import User, WeightEntry
-from tests.conftest import page_data, page_with_scripts
+from tests.conftest import ROOT, page_data, page_with_scripts
 
 
 def test_index_shows_login_prompt_when_logged_out(client):
@@ -47,7 +47,7 @@ def test_index_shows_grid_when_logged_in(logged_in_client):
 # Endpoints anyone may reach. Every other endpoint must send a signed-out visitor away; adding one
 # here is a decision about what strangers may do, not a way to make a failing test pass.
 PUBLIC_ENDPOINTS = {
-    "static", "main.index", "main.robots_txt", "main.set_language", "main.user_avatar",
+    "static", "main.index", "main.robots_txt", "main.favicon", "main.set_language", "main.user_avatar",
     "main.public_chart", "auth.about", "auth.signup", "auth.verify", "auth.resend_code", "auth.logout",
 }
 
@@ -866,3 +866,13 @@ def test_the_dashboard_scripts_are_addressed_by_their_modification_time(logged_i
         mtime = int(os.path.getmtime(os.path.join(app.static_folder, name)))
         assert f"/static/{name}?v={mtime}" in html
         assert client.get(f"/static/{name}?v={mtime}").status_code == 200
+
+
+def test_favicon_ico_is_served_at_the_root(client):
+    """Browsers and bots ask for it by themselves; a 404 there filled the logs for nothing."""
+    response = client.get("/favicon.ico")
+    assert response.status_code == 200
+    assert response.mimetype == "image/vnd.microsoft.icon"
+    assert response.data[:4] == b"\x00\x00\x01\x00"  # the ICO header
+    assert response.data == (ROOT / "app/static/favicon.ico").read_bytes()
+

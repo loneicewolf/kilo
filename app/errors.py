@@ -39,10 +39,9 @@ from app.i18n import megabytes
 from app.security import log_event
 
 # Pages that browsers ask for by themselves and that this app does not have: they are
-# not an attack, so they are not logged (and cannot add up to a ban).
-ROUTINE_BROWSER_PATHS = frozenset(
-    {"/favicon.ico", "/apple-touch-icon.png", "/apple-touch-icon-precomposed.png"}
-)
+# not an attack, so they are not logged (and cannot add up to a ban). /favicon.ico exists
+# (routes.favicon); the pages link the Apple icon, but older iPhones still try these.
+ROUTINE_BROWSER_PATHS = frozenset({"/apple-touch-icon.png", "/apple-touch-icon-precomposed.png"})
 
 # Sent as "code" in the JSON error so the page can tell an expired session from
 # any other failed save.

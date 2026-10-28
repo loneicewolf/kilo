@@ -35,6 +35,7 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_from_directory,
     session,
     url_for,
 )
@@ -79,6 +80,13 @@ Disallow: /
 def robots_txt():
     """Ask search-engine crawlers to stay out of everything but the public pages."""
     return Response(ROBOTS_TXT, mimetype="text/plain")
+
+
+@bp.route("/favicon.ico", methods=["GET"])
+def favicon():
+    """The icon browsers, bookmarks and feed readers ask for at the root by themselves; the pages
+    link the SVG one (static/kilo-icon-*.svg)."""
+    return send_from_directory(current_app.static_folder, "favicon.ico", mimetype="image/vnd.microsoft.icon")
 
 
 @bp.route("/language", methods=["POST"])

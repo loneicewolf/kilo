@@ -210,7 +210,7 @@ def test_the_missing_page_message_is_translated(client):
         ("get", "/nope", {}),  # curl, scripts and most bots do not ask for HTML explicitly
         ("get", "/nope", {"Accept": "application/json"}),
         ("get", "/static/missing.css", BROWSER),
-        ("get", "/favicon.ico", {"Accept": "image/avif,image/webp,*/*"}),
+        ("get", "/apple-touch-icon.png", {"Accept": "image/avif,image/webp,*/*"}),
         ("post", "/nope", BROWSER),
         ("head", "/nope", BROWSER),
     ],

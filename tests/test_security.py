@@ -120,7 +120,7 @@ def test_missing_static_file_is_logged(client, lines):
     assert lines() == ["kilo-notfound ip=203.0.113.9 path=/static/nothing-here.js"]
 
 
-@pytest.mark.parametrize("path", ["/favicon.ico", "/apple-touch-icon.png", "/apple-touch-icon-precomposed.png"])
+@pytest.mark.parametrize("path", ["/apple-touch-icon.png", "/apple-touch-icon-precomposed.png"])
 def test_pages_browsers_ask_for_by_themselves_are_not_logged(client, lines, path):
     assert client.get(path, headers={"X-Real-IP": "203.0.113.9"}).status_code == 404
     assert lines() == []  # they would add up to a ban for every visitor
