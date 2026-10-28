@@ -1,15 +1,16 @@
 # Example logrotate rule for the Kilo logs on the production server
 # (install as /etc/logrotate.d/kilo-gunicorn).
 #
-# It covers the gunicorn logs in /var/log/gunicorn/ (access, error) and the
+# It covers Kilo's gunicorn logs in /var/log/gunicorn/ (kilo-access, kilo-error) and the
 # security log written by the app (SECURITY_LOG_FILE=/var/log/gunicorn/kilo-security.log).
-# Without a rule like this the files grow for ever.
+# Only kilo*.log: other apps may log in the same folder, and the postrotate step
+# signals Kilo's gunicorn only. Without a rule like this the files grow for ever.
 #
 # gunicorn reopens its log files when it gets the USR1 signal. The app's own
 # security log reopens itself when its file has been moved, so it needs nothing.
 # `su` makes logrotate work as the user that owns the files.
 
-/var/log/gunicorn/*.log {
+/var/log/gunicorn/kilo*.log {
     weekly
     rotate 8
     compress
