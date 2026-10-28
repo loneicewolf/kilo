@@ -54,6 +54,7 @@ def sign_out_everywhere():
 def remove_data():
     """Show the removal page: the download step, then the confirmation step."""
     user = get_current_user()
+    session_address.flash_code_sent()
     return render_template(
         "remove_data.html",
         form=VerifyCodeForm(),
@@ -83,7 +84,7 @@ def send_removal_code():
         return redirect(url_for("account.remove_data"))
 
     codes.issue(user, "removal", email, send_deletion_email, reservation)
-    flash(_("We sent a confirmation code to %(email)s.", email=email), "success")
+    session_address.announce_code_sent("removal")
     return redirect(url_for("account.remove_data"))
 
 

@@ -72,7 +72,7 @@ def _to_verify(email):
     """After a code was sent (or one is on its way) to `email`: remember the address and go to
     the page that asks for the code."""
     session_address.store(session_address.PENDING, email)
-    flash(_("We sent a verification code to %(email)s.", email=email), "success")
+    session_address.announce_code_sent("signin")
     return redirect(url_for("auth.verify"))
 
 
@@ -120,6 +120,7 @@ def verify():
             flash(_("Email verified — you're signed in."), "success")
             return redirect(url_for("main.index"))
 
+    session_address.flash_code_sent()
     return render_template(
         "verify.html", form=form, email=email, ttl_minutes=SIGNIN_CODE_TTL_MINUTES
     )
@@ -138,7 +139,7 @@ def resend_code():
         return redirect(url_for("auth.verify"))
 
     codes.issue(user, "signin", email, send_verification_email, reservation)
-    flash(_("We sent a new code to %(email)s.", email=email), "success")
+    session_address.announce_code_sent("resend")
     return redirect(url_for("auth.verify"))
 
 

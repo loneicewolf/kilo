@@ -23,7 +23,7 @@ from cryptography.fernet import Fernet
 
 from app import mail
 from app.models import User
-from tests.conftest import code_from, session_address_of, signup_and_verify
+from tests.conftest import code_from, flashes, session_address_of, signup_and_verify
 
 EMAIL = "secret.person@example.com"
 
@@ -91,3 +91,26 @@ def test_an_address_that_does_not_decrypt_is_simply_missing(client):
         assert response.status_code == 200
         page = response.get_data(as_text=True)
         assert EMAIL not in page and "Signed in" in page
+
+
+def test_the_code_sent_notice_names_the_address_without_carrying_it_in_the_cookie(client):
+    """A flash waits in the cookie until the next page; the notice is only made on that page."""
+    client.post("/signup", data={"email": EMAIL})
+    assert "example.com" not in cookie_contents(client)
+    assert flashes(client.get("/verify")) == [f"We sent a verification code to {EMAIL}."]
+    assert flashes(client.get("/verify")) == []  # once
+
+    client.post("/verify/resend")
+    assert "example.com" not in cookie_contents(client)
+    assert flashes(client.get("/verify")) == [f"We sent a new code to {EMAIL}."]
+
+
+def test_the_removal_code_notice_too(client):
+    signup_and_verify(client, EMAIL)
+    client.get("/")  # shows "Email verified"
+    client.get("/settings/export")
+    client.post("/settings/remove/send-code")
+    assert "example.com" not in cookie_contents(client)
+    assert flashes(client.get("/settings/remove")) == [f"We sent a confirmation code to {EMAIL}."]
+    assert flashes(client.get("/settings/remove")) == []
+

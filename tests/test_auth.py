@@ -182,7 +182,8 @@ def test_signup_remembers_the_address_and_says_the_code_was_sent(client, app, co
         resp = client.post("/signup", data={"email": "twice@example.com"})
     assert resp.status_code == 302 and resp.headers["Location"].endswith("/verify")
     assert len(outbox) == (0 if cooldown else 1)
-    assert _flashes(client) == ["We sent a verification code to twice@example.com."]
+    assert _flashes(client) == []  # not in the cookie: the code page says it (tests/test_session_address.py)
+    assert flashes(client.get("/verify")) == ["We sent a verification code to twice@example.com."]
     assert session_address_of(client, "pending_address") == "twice@example.com"
 
 
