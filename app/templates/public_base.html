@@ -3,6 +3,7 @@
    the owner's page, not the visitor's: no account menu, no flash messages and no CSRF token
    (which would give every visitor a session cookie), even when the visitor is signed in. #}
 {% block csrf_meta %}{% endblock %}
+{% block app_manifest %}{% endblock %}
 {% block header_menu %}{% endblock %}
 {% block flashes %}{% endblock %}
 {# In an iframe the logo would otherwise open Kilo inside the other site's page. #}

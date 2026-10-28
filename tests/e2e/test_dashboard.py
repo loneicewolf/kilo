@@ -338,13 +338,17 @@ def test_a_long_history_is_thinned_out_and_its_average_stays_exact(dashboard, pa
 def test_dark_mode_switches_at_once_and_is_remembered(dashboard, live_server, page):
     user_id = dashboard()
     expect(page.locator("html")).to_have_attribute("data-theme", "light")
+    expect(page.locator('meta[name="theme-color"]')).to_have_attribute("content", "#ffffff")
     page.click("#account-trigger")
     with page.expect_response(lambda response: response.url.endswith("/settings/dark-mode")) as saved:
         page.locator("#account-dropdown .toggle-switch").click()
     assert saved.value.ok
     expect(page.locator("html")).to_have_attribute("data-theme", "dark")
+    # The phone's browser bar (or the installed app's title bar) takes the dark header colour too.
+    expect(page.locator('meta[name="theme-color"]')).to_have_attribute("content", "#1e2426")
     page.reload()
     expect(page.locator("html")).to_have_attribute("data-theme", "dark")
+    expect(page.locator('meta[name="theme-color"]')).to_have_attribute("content", "#1e2426")
     assert live_server.user(user_id).dark_mode is True
 
 
@@ -386,3 +390,14 @@ def test_an_expired_session_shows_the_dialog_instead_of_saving(dashboard, live_s
     expect(page.locator("#session-expired-prompt")).to_be_visible()
     expect(page.locator("#session-expired-reload")).to_be_focused()
     assert live_server.entry(user_id) == (80.2, None)
+
+
+def test_chromium_can_install_kilo_as_an_app(dashboard, context, page):
+    """Chromium's own check: the manifest loads, and its name, start page and icons make Kilo
+    installable ("Add to Home Screen" opens it as an app, not as a bookmark)."""
+    dashboard()
+    cdp = context.new_cdp_session(page)
+    manifest = cdp.send("Page.getAppManifest")
+    assert manifest["errors"] == []
+    assert manifest["url"].startswith(page.url.rstrip("/") + "/static/manifest.json")
+    assert cdp.send("Page.getInstallabilityErrors")["installabilityErrors"] == []

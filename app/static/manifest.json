@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Kilo Tracker",
+  "short_name": "Kilo",
+  "description": "Track your weight and its trend.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f7f5",
+  "theme_color": "#ffffff",
+  "icons": [
+    {"src": "kilo-app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "kilo-app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "kilo-app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

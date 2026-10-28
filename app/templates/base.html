@@ -34,6 +34,14 @@
         href="{{ url_for('static', filename='kilo-icon-' ~ theme ~ '.svg') }}"
         data-light="{{ url_for('static', filename='kilo-icon-light.svg') }}"
         data-dark="{{ url_for('static', filename='kilo-icon-dark.svg') }}">
+  {# Makes Kilo installable on a phone ("Add to Home Screen"); the browser's bar takes the header's
+     colour. Not on the public chart, which is someone else's page. #}
+  {% block app_manifest %}
+    <link rel="manifest" href="{{ static_url('manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ static_url('kilo-app-icon-180.png') }}">
+  {% endblock %}
+  <meta name="theme-color" id="theme-color" content="{{ '#1e2426' if theme == 'dark' else '#ffffff' }}"
+        data-light="#ffffff" data-dark="#1e2426">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='print.css') }}" media="print">
 </head>
@@ -136,6 +144,8 @@
           document.documentElement.setAttribute('data-theme', checked ? 'dark' : 'light');
           var favicon = document.getElementById('favicon');
           if (favicon) favicon.href = favicon.dataset[checked ? 'dark' : 'light'];
+          var themeColor = document.getElementById('theme-color');
+          themeColor.content = themeColor.dataset[checked ? 'dark' : 'light'];
           toggles.forEach(function (other) { other.checked = checked; });
           postJson('{{ url_for("main.set_dark_mode") }}', { dark_mode: checked }).catch(function () {});
         });
