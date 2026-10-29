@@ -25,7 +25,7 @@ msgstr "Du är nu utloggad i alla andra webbläsare och enheter."
 
 # machine-translated
 msgid "Download your data first."
-msgstr "Ladda först ner dina data."
+msgstr "Ladda först ner din data."
 
 # machine-translated
 msgid "Sign in again to confirm this request."
@@ -38,7 +38,7 @@ msgstr "Vi har skickat en bekräftelsekod till %(email)s."
 
 # machine-translated
 msgid "Enter the 6-digit code."
-msgstr "Ange den sexsiffriga koden."
+msgstr "Ange den 6-siffriga koden."
 
 # machine-translated
 msgid "That code has expired. Request a new one."
@@ -54,7 +54,7 @@ msgstr "Fel kod."
 
 # machine-translated
 msgid "Your account and all your data have been removed."
-msgstr "Ditt konto och alla dina data har tagits bort."
+msgstr "Ditt konto och all din data har tagits bort."
 
 # machine-translated
 msgid "Enter your email to sign in."
@@ -70,7 +70,7 @@ msgid "Enter your email to get a verification code."
 msgstr "Ange din e-postadress för att få en verifieringskod."
 
 # machine-translated
-msgid "Email verified — you're signed in."
+msgid "Email verified  you're signed in."
 msgstr "E-postadressen är verifierad – du är inloggad."
 
 # machine-translated
@@ -565,10 +565,10 @@ msgstr "Så fungerar inloggningen"
 #, python-format
 msgid ""
 "There are no passwords. Enter your email and we send a 6-digit code that's "
-"valid for %(num)s minute — enter it and you're signed in."
+"valid for %(num)s minute - enter it and you're signed in."
 msgid_plural ""
 "There are no passwords. Enter your email and we send a 6-digit code that's "
-"valid for %(num)s minutes — enter it and you're signed in."
+"valid for %(num)s minutes - enter it and you're signed in."
 msgstr[0] ""
 "Det finns inga lösenord. Ange din e-postadress så skickar vi en sexsiffrig "
 "kod som är giltig i %(num)s minut – ange den så är du inloggad."
@@ -593,7 +593,7 @@ msgstr ""
 # machine-translated
 #, python-format
 msgid ""
-"That hash also doubles as your Gravatar id — if you have an avatar set up at"
+"That hash also doubles as your Gravatar id - if you have an avatar set up at"
 " %(gravatar_link)s, it shows up automatically once you're signed in."
 msgstr ""
 "Den hashen fungerar också som ditt Gravatar-id – om du har ställt in en "
@@ -712,7 +712,7 @@ msgid "No entries yet."
 msgstr "Inga registreringar ännu."
 
 # machine-translated
-msgid "No entries yet — add your weight below."
+msgid "No entries yet - add your weight below."
 msgstr "Inga registreringar än – lägg till din vikt nedan."
 
 # machine-translated
@@ -934,7 +934,7 @@ msgid "Sign in"
 msgstr "Logga in"
 
 # machine-translated
-msgid "Enter your email and we'll send you a 6-digit code — no password needed."
+msgid "Enter your email and we'll send you a 6-digit code - no password needed."
 msgstr ""
 "Ange din e-postadress så skickar vi en sexsiffrig kod – inget lösenord "
 "behövs."
@@ -991,7 +991,7 @@ msgid "Download my data (CSV)"
 msgstr "Ladda ner mina data (CSV)"
 
 # machine-translated
-msgid "I've downloaded it — continue"
+msgid "I've downloaded it - continue"
 msgstr "Jag har laddat ner dem – fortsätt"
 
 # machine-translated
