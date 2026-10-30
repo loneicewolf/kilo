@@ -818,7 +818,7 @@ msgstr "Ovanligt värde"
 
 # machine-translated
 msgid "Correct it"
-msgstr "Korrigera"
+msgstr "Rätta till"
 
 # machine-translated
 msgid "Save anyway"
@@ -1169,7 +1169,7 @@ msgid ""
 "out on every other browser and device. You stay signed in here."
 msgstr ""
 "Inloggad på en dator som inte är din, eller tappat bort en telefon? Det här "
-"loggar ut dig i alla andra webbläsare och enheter. Här förblir du inloggad."
+"loggar ut dig i alla andra webbläsare och enheter. Du förblir inloggad här."
 
 # machine-translated
 #. Button that ends the sign-in on all other browsers and devices (not on this
