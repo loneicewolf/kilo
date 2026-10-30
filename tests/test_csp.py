@@ -84,6 +84,23 @@ def test_the_policy(client):
     assert "'unsafe-inline'" not in str(policy) and "'unsafe-eval'" not in str(policy)
 
 
+@pytest.mark.parametrize("path", ["/", "/about", "/robots.txt", "/static/style.css", "/no-such-page"])
+def test_every_response_gets_the_other_headers(client, path):
+    headers = client.get(path).headers
+    assert headers["X-Content-Type-Options"] == "nosniff"
+    assert headers["Referrer-Policy"] == "same-origin"
+    assert headers["Permissions-Policy"] == (
+        "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+    )
+
+
+def test_the_public_chart_gets_the_other_headers_too(signed_in):
+    headers = signed_in.get("/public/mine").headers
+    assert headers["X-Content-Type-Options"] == "nosniff"
+    assert headers["Referrer-Policy"] == "same-origin"
+    assert "camera=()" in headers["Permissions-Policy"]
+
+
 def test_the_nonce_is_new_for_every_response(client):
     nonces = {nonce_of(client.get("/")) for _ in range(5)}
     assert len(nonces) == 5

@@ -24,6 +24,8 @@ script cannot know it. `<script type="application/json">` data blocks need none:
 
 The public chart (`main.public_chart`) is the one page other sites may frame, so it gets the
 same policy without `frame-ancestors` and without X-Frame-Options.
+
+Three more headers go with every response, the public chart included (`OTHER_HEADERS`).
 """
 
 import secrets
@@ -32,6 +34,16 @@ from flask import request
 
 # The endpoint whose page is made to be embedded in other sites (an iframe).
 EMBEDDABLE_ENDPOINTS = frozenset({"main.public_chart"})
+
+OTHER_HEADERS = {
+    # A file is what its Content-Type says: the browser never guesses that a text file is a script.
+    "X-Content-Type-Options": "nosniff",
+    # Other sites (a link on the About page, say) never learn which Kilo page a visitor came from.
+    # Kilo's own pages still get the full Referer, which errors.back_url() needs.
+    "Referrer-Policy": "same-origin",
+    # Kilo uses none of these; an injected script (or a framing site) cannot ask for them either.
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+}
 
 
 def csp_nonce():
@@ -73,4 +85,6 @@ def init_app(app):
             # For browsers that predate frame-ancestors (clickjacking: a page loaded invisibly
             # over another site could trick a signed-in user into clicking "Remove my data").
             response.headers.setdefault("X-Frame-Options", "DENY")
+        for name, value in OTHER_HEADERS.items():
+            response.headers.setdefault(name, value)
         return response
