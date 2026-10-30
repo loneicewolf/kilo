@@ -134,7 +134,7 @@ msgstr[1] ""
 
 
 msgid "Confirm removal of your data"
-msgstr "Bekräfta borttagning av dina data"
+msgstr "Bekräfta borttagning av din data"
 
 
 #, python-format
@@ -155,13 +155,13 @@ msgstr[0] ""
 "\n"
 "När du anger den raderas ditt konto och alla dina viktdata permanent. Den "
 "upphör att gälla om %(num)d minut. Om du inte har begärt den kan du ignorera"
-" det här e-postmeddelandet, så rörs inte dina data."
+" det här e-postmeddelandet, så rörs inte din data."
 msgstr[1] ""
 "Din bekräftelsekod är %(code)s.\n"
 "\n"
 "När du anger den raderas ditt konto och alla dina viktdata permanent. Den "
 "upphör att gälla om %(num)d minuter. Om du inte har begärt den kan du "
-"ignorera det här e-postmeddelandet, så rörs inte dina data."
+"ignorera det här e-postmeddelandet, så rörs inte din data."
 
 
 msgid "That email domain doesn't accept mail (no MX record)."
@@ -543,7 +543,7 @@ msgstr "Version %(version)s"
 
 
 msgid "Video tutorial"
-msgstr "Videoguide"
+msgstr "Video tutorial"
 
 
 msgid ""
@@ -551,7 +551,7 @@ msgid ""
 "to sharing your chart and taking your data with you."
 msgstr ""
 "En 13 minuter lång video på YouTube visar hur Kilo Tracker fungerar, från "
-"inloggning till att dela ditt diagram och ta med dig dina data."
+"inloggning till att dela ditt diagram och ta med dig din data."
 
 
 msgid "Watch the Kilo Tracker video tutorial on YouTube"
@@ -945,7 +945,7 @@ msgstr "Skicka kod"
 
 
 msgid "How does this work?"
-msgstr "Hur fungerar det?"
+msgstr "Hur funkar detta?"
 
 
 #. Shown at a public chart's address when there is no chart there, or its owner
@@ -971,7 +971,7 @@ msgstr ""
 
 
 msgid "Step 1: Download your data"
-msgstr "Steg 1: Ladda ner dina data"
+msgstr "Steg 1: Ladda ner din data"
 
 
 msgid "download it again"
@@ -1183,7 +1183,7 @@ msgid ""
 "download your data and confirm with a code sent by email first."
 msgstr ""
 "Radera ditt konto och alla dina vägningar permanent. Du ombeds först ladda "
-"ner dina data och bekräfta med en kod som skickas via e-post."
+"ner din data och bekräfta med en kod som skickas via e-post."
 
 
 msgid "Remove my data…"
