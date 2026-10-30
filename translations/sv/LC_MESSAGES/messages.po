@@ -19,99 +19,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-# machine-translated
+
 msgid "You are now signed out on all other browsers and devices."
 msgstr "Du är nu utloggad i alla andra webbläsare och enheter."
 
-# machine-translated
+
 msgid "Download your data first."
 msgstr "Ladda först ner din data."
 
-# machine-translated
+
 msgid "Sign in again to confirm this request."
 msgstr "Logga in igen för att bekräfta begäran."
 
-# machine-translated
+
 #, python-format
 msgid "We sent a confirmation code to %(email)s."
 msgstr "Vi har skickat en bekräftelsekod till %(email)s."
 
-# machine-translated
+
 msgid "Enter the 6-digit code."
 msgstr "Ange den 6-siffriga koden."
 
-# machine-translated
+
 msgid "That code has expired. Request a new one."
 msgstr "Koden har gått ut. Begär en ny."
 
-# machine-translated
+
 msgid "Too many attempts. Request a new code."
 msgstr "För många försök. Begär en ny kod."
 
-# machine-translated
+
 msgid "Incorrect code."
 msgstr "Fel kod."
 
-# machine-translated
+
 msgid "Your account and all your data have been removed."
 msgstr "Ditt konto och all din data har tagits bort."
 
-# machine-translated
+
 msgid "Enter your email to sign in."
 msgstr "Ange din e-postadress för att logga in."
 
-# machine-translated
+
 #, python-format
 msgid "We sent a verification code to %(email)s."
 msgstr "Vi har skickat en verifieringskod till %(email)s."
 
-# machine-translated
+
 msgid "Enter your email to get a verification code."
 msgstr "Ange din e-postadress för att få en verifieringskod."
 
-# machine-translated
+
 msgid "Email verified  you're signed in."
 msgstr "E-postadressen är verifierad – du är inloggad."
 
-# machine-translated
+
 #, python-format
 msgid "We sent a new code to %(email)s."
 msgstr "Vi har skickat en ny kod till %(email)s."
 
-# machine-translated
+
 msgid "Signed out."
 msgstr "Du är utloggad."
 
-# machine-translated
+
 #. NOTE: date,weight[,note] names the columns of a CSV line; translate the
 #. names (note is optional).
 #, python-format
 msgid "line %(line)d: expected date,weight[,note]"
 msgstr "rad %(line)d: förväntade datum,vikt[,anteckning]"
 
-# machine-translated
+
 #, python-format
 msgid "line %(line)d: invalid date %(value)s"
 msgstr "rad %(line)d: ogiltigt datum %(value)s"
 
-# machine-translated
+
 #, python-format
 msgid "line %(line)d: invalid weight %(value)s"
 msgstr "rad %(line)d: ogiltig vikt %(value)s"
 
-# machine-translated
+
 #, python-format
 msgid "line %(line)d: weight out of range"
 msgstr "rad %(line)d: vikten är utanför intervallet"
 
-# machine-translated
+
 #. NOTE: The email subject; the code is at the end, with no full stop, so it
 #. can be copied.
 #, python-format
 msgid "Your verification code is %(code)s"
 msgstr "Din verifieringskod är %(code)s"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "Your verification code is %(code)s.\n"
@@ -132,11 +132,11 @@ msgstr[1] ""
 "Den upphör att gälla om %(num)d minuter. Om du inte har begärt den kan du "
 "ignorera det här e-postmeddelandet."
 
-# machine-translated
+
 msgid "Confirm removal of your data"
 msgstr "Bekräfta borttagning av dina data"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "Your confirmation code is %(code)s.\n"
@@ -163,67 +163,67 @@ msgstr[1] ""
 "upphör att gälla om %(num)d minuter. Om du inte har begärt den kan du "
 "ignorera det här e-postmeddelandet, så rörs inte dina data."
 
-# machine-translated
+
 msgid "That email domain doesn't accept mail (no MX record)."
 msgstr "Den e-postdomänen tar inte emot e-post (ingen MX-post)."
 
-# machine-translated
+
 msgid "Couldn't check that email domain right now. Try again."
 msgstr "E-postdomänen kunde inte kontrolleras just nu. Försök igen."
 
-# machine-translated
+
 msgid "Your session has expired. Reload the page and try again."
 msgstr "Din session har gått ut. Ladda om sidan och försök igen."
 
-# machine-translated
+
 msgid "Your session has expired and nothing was changed. Please try again."
 msgstr "Din session har gått ut och ingenting ändrades. Försök igen."
 
-# machine-translated
+
 msgid "That page isn't available, so you were taken to the start page."
 msgstr "Sidan är inte tillgänglig, så du skickades till startsidan."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "The file is too large: the limit is %(size)s. Nothing was imported or "
 "changed."
 msgstr "Filen är för stor: gränsen är %(size)s. Inget har importerats eller ändrats."
 
-# machine-translated
+
 msgid "Something went wrong on our side. Please try again in a moment."
 msgstr "Något gick fel hos oss. Försök igen om en stund."
 
-# machine-translated
+
 msgid "Email"
 msgstr "E-postadress"
 
-# machine-translated
+
 msgid "Verification code"
 msgstr "Verifieringskod"
 
-# machine-translated
+
 msgid "Enter the height as a plain number, e.g. 180 or 1.8."
 msgstr "Ange längden som ett vanligt tal, t.ex. 180 eller 1,8."
 
-# machine-translated
+
 #. NOTE: Label of the body height field in the settings.
 msgid "Height"
 msgstr "Längd"
 
-# machine-translated
+
 msgid "Unit"
 msgstr "Enhet"
 
-# machine-translated
+
 msgid "Dark mode"
 msgstr "Mörkt läge"
 
-# machine-translated
+
 msgid "Moving average (days)"
 msgstr "Glidande medelvärde (dagar)"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "Height must be between %(min_cm)s and %(max_cm)s cm (%(min_m)s and %(max_m)s"
@@ -232,80 +232,80 @@ msgstr ""
 "Längden måste vara mellan %(min_cm)s och %(max_cm)s cm (%(min_m)s och "
 "%(max_m)s m)."
 
-# machine-translated
+
 #. NOTE: Switch in the settings that makes the weight chart visible on a public
 #. web page.
 msgid "Share my chart on a public page"
 msgstr "Dela mitt diagram på en offentlig sida"
 
-# machine-translated
+
 #. NOTE: Switch in the settings: show the kilograms on the public chart, or
 #. only the shape of the line.
 msgid "Show my weight"
 msgstr "Visa min vikt"
 
-# machine-translated
+
 #. NOTE: Switch in the settings: show the boxes with the current average, BMI
 #. and changes under the public chart.
 msgid "Show the stat boxes on the public page"
 msgstr "Visa statistikrutorna på den offentliga sidan"
 
-# machine-translated
+
 #. NOTE: Label of the field with the last part of the public page's address
 #. (the "ramon" in .../public/ramon).
 msgid "Page ID"
 msgstr "Sid-id"
 
-# machine-translated
+
 #, python-format
 msgid "Use %(min)d to %(max)d letters (a-z), digits, hyphens or underscores."
 msgstr ""
 "Använd %(min)d till %(max)d bokstäver (a-z), siffror, bindestreck eller "
 "understreck."
 
-# machine-translated
+
 msgid "That ID is already taken. Choose another one."
 msgstr "Det id:t är redan upptaget. Välj ett annat."
 
-# machine-translated
+
 msgid "CSV or XML file"
 msgstr "CSV- eller XML-fil"
 
-# machine-translated
+
 msgid "CSV, XML or text files only."
 msgstr "Endast CSV-, XML- eller textfiler."
 
-# machine-translated
+
 #, python-format
 msgid "That file stores weights in %(unit)s, which can't be imported."
 msgstr "Den filen sparar vikter i %(unit)s, vilket inte kan importeras."
 
-# machine-translated
+
 msgid "That file isn't a valid Hacker's Diet XML export."
 msgstr "Den filen är inte en giltig XML-export från Hacker's Diet."
 
-# machine-translated
+
 #, python-format
 msgid "%(date)s: invalid date"
 msgstr "%(date)s: ogiltigt datum"
 
-# machine-translated
+
 #, python-format
 msgid "%(date)s: invalid weight %(value)s"
 msgstr "%(date)s: ogiltig vikt %(value)s"
 
-# machine-translated
+
 #, python-format
 msgid "%(date)s: weight out of range"
 msgstr "%(date)s: vikten är utanför intervallet"
 
-# machine-translated
+
 #. NOTE: Rate of weight change. %(grams)s is a signed whole number; g is gram.
 #, python-format
 msgid "%(grams)s g/day"
 msgstr "%(grams)s g/dag"
 
-# machine-translated
+
 #. NOTE: Shown when too many sign-in codes were requested. %(num)d is a number
 #. of minutes.
 #, python-format
@@ -314,62 +314,62 @@ msgid_plural "Too many requests. Try again in %(num)d minutes."
 msgstr[0] "För många förfrågningar. Försök igen om %(num)d minut."
 msgstr[1] "För många förfrågningar. Försök igen om %(num)d minuter."
 
-# machine-translated
+
 #. NOTE: Chart range button: the whole recorded history.
 msgid "All"
 msgstr "Allt"
 
-# machine-translated
+
 #. NOTE: Chart range button: 20 years. The letter is the unit, Y for year.
 msgid "20Y"
 msgstr "20Å"
 
-# machine-translated
+
 #. NOTE: Chart range button: 15 years. The letter is the unit, Y for year.
 msgid "15Y"
 msgstr "15Å"
 
-# machine-translated
+
 #. NOTE: Chart range button: 10 years. The letter is the unit, Y for year.
 msgid "10Y"
 msgstr "10Å"
 
-# machine-translated
+
 #. NOTE: Chart range button: 5 years. The letter is the unit, Y for year.
 msgid "5Y"
 msgstr "5Å"
 
-# machine-translated
+
 #. NOTE: Chart range button: 1 year. The letter is the unit, Y for year.
 msgid "1Y"
 msgstr "1Å"
 
-# machine-translated
+
 #. NOTE: Chart range button: 6 months. The letter is the unit, M for month.
 msgid "6M"
 msgstr "6M"
 
-# machine-translated
+
 #. NOTE: Chart range button: 3 months. The letter is the unit, M for month.
 msgid "3M"
 msgstr "3M"
 
-# machine-translated
+
 #. NOTE: Chart range button: 1 month. The letter is the unit, M for month.
 msgid "1M"
 msgstr "1M"
 
-# machine-translated
+
 #. NOTE: Chart range button: 2 weeks. The letter is the unit, W for week.
 msgid "2W"
 msgstr "2V"
 
-# machine-translated
+
 #. NOTE: Chart range button: 1 week. The letter is the unit, W for week.
 msgid "1W"
 msgstr "1V"
 
-# machine-translated
+
 #. NOTE: Screen-reader name of a chart range button such as 5Y.
 #, python-format
 msgid "%(num)d year"
@@ -377,7 +377,7 @@ msgid_plural "%(num)d years"
 msgstr[0] "%(num)d år"
 msgstr[1] "%(num)d år"
 
-# machine-translated
+
 #. NOTE: Screen-reader name of a chart range button such as 3M.
 #, python-format
 msgid "%(num)d month"
@@ -385,7 +385,7 @@ msgid_plural "%(num)d months"
 msgstr[0] "%(num)d månad"
 msgstr[1] "%(num)d månader"
 
-# machine-translated
+
 #. NOTE: Screen-reader name of a chart range button such as 2W.
 #, python-format
 msgid "%(num)d week"
@@ -393,22 +393,22 @@ msgid_plural "%(num)d weeks"
 msgstr[0] "%(num)d vecka"
 msgstr[1] "%(num)d veckor"
 
-# machine-translated
+
 #, python-format
 msgid "%(num)d-day change"
 msgid_plural "%(num)d-day change"
 msgstr[0] "Förändring på %(num)d dag"
 msgstr[1] "Förändring på %(num)d dagar"
 
-# machine-translated
+
 msgid "Invalid date."
 msgstr "Ogiltigt datum."
 
-# machine-translated
+
 msgid "Invalid request."
 msgstr "Ogiltig begäran."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "%(weight)s is %(percent)s%% different from your entry of %(other)s on "
@@ -417,83 +417,83 @@ msgstr ""
 "%(weight)s avviker med %(percent)s %% från din registrering på %(other)s den"
 " %(date)s."
 
-# machine-translated
+
 msgid "Enter a valid weight, like 72.5."
 msgstr "Ange en giltig vikt, t.ex. 72,5."
 
-# machine-translated
+
 #, python-format
 msgid "Weight must be between %(min)s and %(max)s kg."
 msgstr "Vikten måste vara mellan %(min)s och %(max)s kg."
 
-# machine-translated
+
 msgid "Invalid range."
 msgstr "Ogiltigt intervall."
 
-# machine-translated
+
 msgid "Settings updated."
 msgstr "Inställningarna har uppdaterats."
 
-# machine-translated
+
 msgid "Your chart is now public."
 msgstr "Ditt diagram är nu offentligt."
 
-# machine-translated
+
 msgid "Your chart is no longer public."
 msgstr "Ditt diagram är inte längre offentligt."
 
-# machine-translated
+
 #, python-format
 msgid "Imported %(num)d entry."
 msgid_plural "Imported %(num)d entries."
 msgstr[0] "%(num)d registrering importerades."
 msgstr[1] "%(num)d registreringar importerades."
 
-# machine-translated
+
 #, python-format
 msgid "Your height was set to %(height)s."
 msgstr "Din längd har ställts in på %(height)s."
 
-# machine-translated
+
 #, python-format
 msgid "%(num)d note without a weight was skipped."
 msgid_plural "%(num)d notes without a weight were skipped."
 msgstr[0] "%(num)d anteckning utan vikt hoppades över."
 msgstr[1] "%(num)d anteckningar utan vikt hoppades över."
 
-# machine-translated
+
 #, python-format
 msgid "%(details)s (+%(count)d more)"
 msgstr "%(details)s (+%(count)d till)"
 
-# machine-translated
+
 #, python-format
 msgid "Skipped %(num)d invalid line: %(details)s"
 msgid_plural "Skipped %(num)d invalid lines: %(details)s"
 msgstr[0] "%(num)d ogiltig rad hoppades över: %(details)s"
 msgstr[1] "%(num)d ogiltiga rader hoppades över: %(details)s"
 
-# machine-translated
+
 msgid "No rows found in the file."
 msgstr "Inga rader hittades i filen."
 
-# machine-translated
+
 msgid "Back"
 msgstr "Tillbaka"
 
-# machine-translated
+
 msgid "About"
 msgstr "Om"
 
-# machine-translated
+
 msgid "Back to the dashboard"
 msgstr "Tillbaka till översikten"
 
-# machine-translated
+
 msgid "About Kilo Tracker"
 msgstr "Om Kilo Tracker"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "For many years I tracked my weight with %(hdo_link)s, created by "
@@ -504,7 +504,7 @@ msgstr ""
 "Det fortsatte fungera länge efter hans död, men i mars 2026 slutade det till"
 " sist."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "I tried %(yadt_link)s as a replacement, but its interface wasn't for me. So "
@@ -515,7 +515,7 @@ msgstr ""
 "Så jag vibe-kodade min egen version, och Kilo Tracker är resultatet. Det är "
 "gratis för alla."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "Kilo Tracker is open source software. You can download the source code and "
@@ -524,28 +524,28 @@ msgstr ""
 "Kilo Tracker är programvara med öppen källkod. Du kan ladda ner källkoden "
 "och köra din egen kopia från %(github_link)s."
 
-# machine-translated
+
 #, python-format
 msgid "I hope you like it! You can reach me at %(mail_link)s."
 msgstr "Jag hoppas att du gillar den! Du når mig på %(mail_link)s."
 
-# machine-translated
+
 #. Version of the app, with the date of its last change. %(version)s is a link
 #. such as v1.2 or a commit id.
 #, python-format
 msgid "Version %(version)s &middot; committed %(date)s"
 msgstr "Version %(version)s &middot; committad %(date)s"
 
-# machine-translated
+
 #, python-format
 msgid "Version %(version)s"
 msgstr "Version %(version)s"
 
-# machine-translated
+
 msgid "Video tutorial"
 msgstr "Videoguide"
 
-# machine-translated
+
 msgid ""
 "A 13-minute video on YouTube shows how Kilo Tracker works, from signing in "
 "to sharing your chart and taking your data with you."
@@ -553,15 +553,15 @@ msgstr ""
 "En 13 minuter lång video på YouTube visar hur Kilo Tracker fungerar, från "
 "inloggning till att dela ditt diagram och ta med dig dina data."
 
-# machine-translated
+
 msgid "Watch the Kilo Tracker video tutorial on YouTube"
 msgstr "Titta på videoguiden för Kilo Tracker på YouTube"
 
-# machine-translated
+
 msgid "How signing in works"
 msgstr "Så fungerar inloggningen"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "There are no passwords. Enter your email and we send a 6-digit code that's "
@@ -576,11 +576,11 @@ msgstr[1] ""
 "Det finns inga lösenord. Ange din e-postadress så skickar vi en sexsiffrig "
 "kod som är giltig i %(num)s minuter – ange den så är du inloggad."
 
-# machine-translated
+
 msgid "Gravatar uses"
 msgstr "Gravatar"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "We never store your email address itself in our database. Instead we keep a "
@@ -590,7 +590,7 @@ msgstr ""
 "en enkelriktad SHA-256-hash av den (samma schema som %(gravatar_hash_link)s "
 "använder)."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "That hash also doubles as your Gravatar id - if you have an avatar set up at"
@@ -599,7 +599,7 @@ msgstr ""
 "Den hashen fungerar också som ditt Gravatar-id – om du har ställt in en "
 "avatar på %(gravatar_link)s visas den automatiskt när du är inloggad."
 
-# machine-translated
+
 msgid ""
 "Kilo fetches that avatar from Gravatar itself and keeps a copy for a day, so"
 " Gravatar never sees your visits, your browser or your IP address."
@@ -607,246 +607,246 @@ msgstr ""
 "Kilo hämtar själv avataren från Gravatar och sparar en kopia i ett dygn, så "
 "Gravatar ser aldrig dina besök, din webbläsare eller din IP-adress."
 
-# machine-translated
+
 #. Label of the menu that picks the language of the website.
 msgid "Language"
 msgstr "Språk"
 
-# machine-translated
+
 #. First choice in the language menu: follow the language set in the web
 #. browser.
 msgid "Browser language"
 msgstr "Webbläsarens språk"
 
-# machine-translated
+
 msgid "OK"
 msgstr "OK"
 
-# machine-translated
+
 #. Link for keyboard users at the very top of every page; it jumps past the
 #. header.
 msgid "Skip to main content"
 msgstr "Hoppa till huvudinnehållet"
 
-# machine-translated
+
 msgid "Signed in"
 msgstr "Inloggad"
 
-# machine-translated
+
 msgid "Settings"
 msgstr "Inställningar"
 
-# machine-translated
+
 msgid "Log out"
 msgstr "Logga ut"
 
-# machine-translated
+
 #. Heading of the page shown when the server had an unexpected error.
 msgid "Something went wrong"
 msgstr "Något gick fel"
 
-# machine-translated
+
 msgid "If you were saving something, check whether it was saved and try again."
 msgstr "Om du höll på att spara något, kontrollera om det sparades och försök igen."
 
-# machine-translated
+
 msgid "Back to the start page"
 msgstr "Tillbaka till startsidan"
 
-# machine-translated
+
 #. Title of the public page that shows someone's weight chart.
 msgid "Weight chart"
 msgstr "Viktdiagram"
 
-# machine-translated
+
 #. Link for keyboard users at the top of the dashboard; it jumps past the chart
 #. and the numbers to the list of days.
 msgid "Skip to the daily log"
 msgstr "Hoppa till dagloggen"
 
-# machine-translated
+
 #. Screen-reader label of the weight field of one day in the daily log;
 #. %(date)s is a date such as 24 Oct 2026.
 #, python-format
 msgid "Weight on %(date)s"
 msgstr "Vikt den %(date)s"
 
-# machine-translated
+
 #. Screen-reader label of the note button of one day in the daily log; %(date)s
 #. is a date such as 24 Oct 2026.
 #, python-format
 msgid "Note for %(date)s"
 msgstr "Anteckning för %(date)s"
 
-# machine-translated
+
 msgid "No note"
 msgstr "Ingen anteckning"
 
-# machine-translated
+
 msgid "Add a note…"
 msgstr "Lägg till en anteckning…"
 
-# machine-translated
+
 #. Tooltip and screen-reader label of the button that opens a panel of emoji to
 #. put in a note.
 msgid "Insert an emoji"
 msgstr "Infoga en emoji"
 
-# machine-translated
+
 msgid "Cancel"
 msgstr "Avbryt"
 
-# machine-translated
+
 #. Button that saves a note (verb).
 #. Button that saves the settings (verb).
 msgid "Save"
 msgstr "Spara"
 
-# machine-translated
+
 #. Label above the latest moving-average weight.
 msgid "Current average"
 msgstr "Aktuellt medelvärde"
 
-# machine-translated
+
 msgid "No entries yet."
 msgstr "Inga registreringar ännu."
 
-# machine-translated
+
 msgid "No entries yet - add your weight below."
 msgstr "Inga registreringar än – lägg till din vikt nedan."
 
-# machine-translated
+
 #. BMI is Body Mass Index; keep the abbreviation people know in your language.
 msgid "BMI"
 msgstr "BMI"
 
-# machine-translated
+
 #. Third line of the BMI box: the body height in metres, for example "Height:
 #. 1.86 m". %(height)s already includes the unit.
 #, python-format
 msgid "Height: %(height)s"
 msgstr "Längd: %(height)s"
 
-# machine-translated
+
 msgid "Set your height"
 msgstr "Ange din längd"
 
-# machine-translated
+
 #, python-format
 msgid "Show the %(range)s chart"
 msgstr "Visa diagrammet för %(range)s"
 
-# machine-translated
+
 msgid "Show the whole history in the chart"
 msgstr "Visa hela historiken i diagrammet"
 
-# machine-translated
+
 #. Heading of the box about the logged weigh-ins: first date, last date and how
 #. many.
 msgid "Entries"
 msgstr "Registreringar"
 
-# machine-translated
+
 #. The date of the first entry.
 msgid "First"
 msgstr "Första"
 
-# machine-translated
+
 #. The date of the last (most recent) entry.
 msgid "Last"
 msgstr "Senaste"
 
-# machine-translated
+
 #. The total number of entries.
 msgid "Total"
 msgstr "Totalt"
 
-# machine-translated
+
 msgid "Daily log"
 msgstr "Daglogg"
 
-# machine-translated
+
 msgid "Scroll to the most recent entry"
 msgstr "Rulla till den senaste registreringen"
 
-# machine-translated
+
 msgid "Most recent entry"
 msgstr "Senaste registreringen"
 
-# machine-translated
+
 #. Column headers of the daily log: the day, the weight in kilograms, and a
 #. free-text note.
 msgid "Date"
 msgstr "Datum"
 
-# machine-translated
+
 msgid "Weight (kg)"
 msgstr "Vikt (kg)"
 
-# machine-translated
+
 msgid "Note"
 msgstr "Anteckning"
 
-# machine-translated
+
 #. Heading above the emoji the user picked most recently.
 msgid "Recently used"
 msgstr "Nyligen använda"
 
-# machine-translated
+
 msgid "Loading more days…"
 msgstr "Läser in fler dagar…"
 
-# machine-translated
+
 msgid "Log today's weight?"
 msgstr "Registrera dagens vikt?"
 
-# machine-translated
+
 msgid "You haven't recorded a weight for today yet."
 msgstr "Du har inte registrerat någon vikt för i dag än."
 
-# machine-translated
+
 msgid "e.g. 82.4"
 msgstr "t.ex. 82,4"
 
-# machine-translated
+
 msgid "Skip"
 msgstr "Hoppa över"
 
-# machine-translated
+
 msgid "Unusual value"
 msgstr "Ovanligt värde"
 
-# machine-translated
+
 msgid "Correct it"
 msgstr "Rätta till"
 
-# machine-translated
+
 msgid "Save anyway"
 msgstr "Spara ändå"
 
-# machine-translated
+
 #. Button that brings back a weight that was just deleted from the daily log.
 msgid "Undo"
 msgstr "Ångra"
 
-# machine-translated
+
 #. Title of a dialog: the login session has timed out; the page must be
 #. reloaded.
 msgid "Session expired"
 msgstr "Sessionen har gått ut"
 
-# machine-translated
+
 #. Button that reloads the web page.
 msgid "Reload page"
 msgstr "Ladda om sidan"
 
-# machine-translated
+
 #. Name of the whole period (the "All" range button) in the chart's description
 #. for screen readers.
 msgid "All weigh-ins"
 msgstr "Alla vägningar"
 
-# machine-translated
+
 #. The chart in words, for screen readers. %(period)s is a period such as "3
 #. months"; the weights are such as "82.4 kg".
 #, python-format
@@ -858,110 +858,110 @@ msgstr ""
 "%(last_date)s. Lägsta %(lowest)s, högsta %(highest)s, medelvärde "
 "%(average)s."
 
-# machine-translated
+
 #. The chart in words, for screen readers, when the period shown has no
 #. weights.
 #, python-format
 msgid "%(period)s: no weigh-ins in this period."
 msgstr "%(period)s: inga vägningar under den här perioden."
 
-# machine-translated
+
 #. The chart in words when the owner hides the weights on the public page: only
 #. the line's direction.
 #, python-format
 msgid "%(period)s: the line ends lower than it starts."
 msgstr "%(period)s: linjen slutar lägre än den börjar."
 
-# machine-translated
+
 #. The chart in words when the owner hides the weights on the public page: only
 #. the line's direction.
 #, python-format
 msgid "%(period)s: the line ends higher than it starts."
 msgstr "%(period)s: linjen slutar högre än den börjar."
 
-# machine-translated
+
 #. The chart in words when the owner hides the weights on the public page: only
 #. the line's direction.
 #, python-format
 msgid "%(period)s: the line ends at the same height as it starts."
 msgstr "%(period)s: linjen slutar på samma höjd som den börjar."
 
-# machine-translated
+
 #, python-format
 msgid "%(num)d-day average"
 msgid_plural "%(num)d-day average"
 msgstr[0] "Medelvärde över %(num)d dag"
 msgstr[1] "Medelvärde över %(num)d dagar"
 
-# machine-translated
+
 msgid "Overall average"
 msgstr "Totalt medelvärde"
 
-# machine-translated
+
 #, python-format
 msgid "BMI (%(num)d-day avg): %(bmi)s"
 msgid_plural "BMI (%(num)d-day avg): %(bmi)s"
 msgstr[0] "BMI (medel över %(num)d dag): %(bmi)s"
 msgstr[1] "BMI (medel över %(num)d dagar): %(bmi)s"
 
-# machine-translated
+
 msgid "Saving…"
 msgstr "Sparar…"
 
-# machine-translated
+
 msgid "Saved"
 msgstr "Sparat"
 
-# machine-translated
+
 msgid "Could not save"
 msgstr "Kunde inte spara"
 
-# machine-translated
+
 msgid "Could not save."
 msgstr "Kunde inte spara."
 
-# machine-translated
+
 msgid "Error saving"
 msgstr "Fel vid sparande"
 
-# machine-translated
+
 #, python-format
 msgid "Weight of %(date)s removed."
 msgstr "Vikten för %(date)s har tagits bort."
 
-# machine-translated
+
 msgid "Sign in"
 msgstr "Logga in"
 
-# machine-translated
+
 msgid "Enter your email and we'll send you a 6-digit code - no password needed."
 msgstr ""
 "Ange din e-postadress så skickar vi en sexsiffrig kod – inget lösenord "
 "behövs."
 
-# machine-translated
+
 msgid "Send code"
 msgstr "Skicka kod"
 
-# machine-translated
+
 msgid "How does this work?"
 msgstr "Hur fungerar det?"
 
-# machine-translated
+
 #. Shown at a public chart's address when there is no chart there, or its owner
 #. stopped sharing it.
 msgid "There is no public chart at this address (any more)."
 msgstr "Det finns inget offentligt diagram (längre) på den här adressen."
 
-# machine-translated
+
 msgid "Remove my data"
 msgstr "Ta bort mina data"
 
-# machine-translated
+
 msgid "Back to settings"
 msgstr "Tillbaka till inställningar"
 
-# machine-translated
+
 msgid ""
 "This permanently deletes your account, all your weigh-ins and notes, and "
 "your settings. It can't be undone."
@@ -969,36 +969,36 @@ msgstr ""
 "Detta raderar permanent ditt konto, alla dina vägningar och anteckningar "
 "samt dina inställningar. Det går inte att ångra."
 
-# machine-translated
+
 msgid "Step 1: Download your data"
 msgstr "Steg 1: Ladda ner dina data"
 
-# machine-translated
+
 msgid "download it again"
 msgstr "ladda ner dem igen"
 
-# machine-translated
+
 #, python-format
 msgid "Downloaded. You can %(again_link)s."
 msgstr "Nedladdat. Du kan %(again_link)s."
 
-# machine-translated
+
 msgid "Download a copy of your weigh-ins before they're deleted. This is required."
 msgstr "Ladda ner en kopia av dina vägningar innan de raderas. Det är obligatoriskt."
 
-# machine-translated
+
 msgid "Download my data (CSV)"
 msgstr "Ladda ner mina data (CSV)"
 
-# machine-translated
+
 msgid "I've downloaded it - continue"
 msgstr "Jag har laddat ner dem – fortsätt"
 
-# machine-translated
+
 msgid "Step 2: Confirm by email"
 msgstr "Steg 2: Bekräfta via e-post"
 
-# machine-translated
+
 #, python-format
 msgid ""
 "We sent a 6-digit code to <strong>%(email)s</strong>. It expires in %(num)s "
@@ -1013,34 +1013,34 @@ msgstr[1] ""
 "Vi har skickat en sexsiffrig kod till <strong>%(email)s</strong>. Den upphör"
 " att gälla om %(num)s minuter."
 
-# machine-translated
+
 msgid "Delete everything"
 msgstr "Radera allt"
 
-# machine-translated
+
 msgid "Resend code"
 msgstr "Skicka koden igen"
 
-# machine-translated
+
 #, python-format
 msgid "We'll email a confirmation code to <strong>%(email)s</strong>."
 msgstr "Vi skickar en bekräftelsekod till <strong>%(email)s</strong>."
 
-# machine-translated
+
 msgid "Send confirmation code"
 msgstr "Skicka bekräftelsekod"
 
-# machine-translated
+
 msgid "Your height is used to calculate your BMI."
 msgstr "Din längd används för att beräkna ditt BMI."
 
-# machine-translated
+
 #. Heading of the settings section about showing the weight chart on a public
 #. web page.
 msgid "Public chart"
 msgstr "Offentligt diagram"
 
-# machine-translated
+
 msgid ""
 "Show your chart and stat boxes on a public page that anyone with the link "
 "can see, and that you can embed in another website. Your notes, your email "
@@ -1050,7 +1050,7 @@ msgstr ""
 "länken kan se, och som du kan bädda in på en annan webbplats. Dina "
 "anteckningar, din e-postadress och din daglogg visas aldrig."
 
-# machine-translated
+
 msgid ""
 "Switched off, the chart shows only the shape of the line: no kilograms, no "
 "BMI and no stat boxes."
@@ -1058,7 +1058,7 @@ msgstr ""
 "Avstängt visar diagrammet bara linjens form: inga kilo, inget BMI och inga "
 "statistikrutor."
 
-# machine-translated
+
 #, python-format
 msgid ""
 "The last part of the page's address: %(min)d to %(max)d letters (a-z), "
@@ -1068,32 +1068,32 @@ msgstr ""
 "siffror, bindestreck eller understreck. Lämna tomt för ett nytt slumpmässigt"
 " id."
 
-# machine-translated
+
 #. Label of a menu in the settings: which period the shared chart shows.
 msgid "Chart range"
 msgstr "Diagrammets period"
 
-# machine-translated
+
 #. First choice of the chart range menu: the chart keeps its range buttons and
 #. the visitor picks.
 msgid "Visitor chooses (range buttons)"
 msgstr "Besökaren väljer (periodknappar)"
 
-# machine-translated
+
 msgid "Your public chart:"
 msgstr "Ditt offentliga diagram:"
 
-# machine-translated
+
 msgid "To show it in another website, put this code in that page's HTML:"
 msgstr ""
 "För att visa det på en annan webbplats, lägg in den här koden i den sidans "
 "HTML:"
 
-# machine-translated
+
 msgid "Import data"
 msgstr "Importera data"
 
-# machine-translated
+
 #. The text in <code> only names the three columns of a line such as
 #. 23-9-26,79.7,text. Translate the names (date, weight, note): the file itself
 #. has no header and is the same in every language.
@@ -1104,17 +1104,17 @@ msgstr ""
 "Importera vägningar från en CSV-textfil. Varje rad är "
 "<code>datum,vikt,anteckning</code> (anteckningen är valfri), till exempel:"
 
-# machine-translated
+
 #. Example notes in the CSV sample. The CSV format itself (dates, dot as
 #. decimal separator) stays the same in every language.
 msgid "optional notes"
 msgstr "valfria anteckningar"
 
-# machine-translated
+
 msgid "some text"
 msgstr "lite text"
 
-# machine-translated
+
 #. d-M-yy and d-M-yyyy describe the date pattern, as in 23-9-26 or 23-9-2026.
 #. Use the first letter of the word for day, month (keep a capital M, so it
 #. cannot be mistaken for minutes) and year in your language, e.g. j-M-aa in
@@ -1127,7 +1127,7 @@ msgstr ""
 "anges i kilogram. Om du importerar ett datum som redan har en registrering "
 "skrivs den över."
 
-# machine-translated
+
 #. "The Hacker's Diet Online" and "Yet Another Diet Tool" are names of web
 #. services; do not translate them.
 msgid ""
@@ -1139,31 +1139,31 @@ msgstr ""
 " eller CSV-exporten från Yet Another Diet Tool. Vikter, anteckningar och, "
 "från XML-filen, din längd importeras; allt annat ignoreras."
 
-# machine-translated
+
 msgid "Import"
 msgstr "Importera"
 
-# machine-translated
+
 msgid "Export data"
 msgstr "Exportera data"
 
-# machine-translated
+
 msgid "Download all your weigh-ins as a CSV file (date, weight in kilograms, note)."
 msgstr ""
 "Ladda ner alla dina vägningar som en CSV-fil (datum, vikt i kilogram, "
 "anteckning)."
 
-# machine-translated
+
 msgid "Export CSV"
 msgstr "Exportera CSV"
 
-# machine-translated
+
 #. Heading of the settings section that ends the sign-in on every other browser
 #. and device.
 msgid "Sign out everywhere"
 msgstr "Logga ut överallt"
 
-# machine-translated
+
 msgid ""
 "Signed in on a computer that isn't yours, or lost a phone? This signs you "
 "out on every other browser and device. You stay signed in here."
@@ -1171,13 +1171,13 @@ msgstr ""
 "Inloggad på en dator som inte är din, eller tappat bort en telefon? Det här "
 "loggar ut dig i alla andra webbläsare och enheter. Du förblir inloggad här."
 
-# machine-translated
+
 #. Button that ends the sign-in on all other browsers and devices (not on this
 #. one).
 msgid "Sign out on other devices"
 msgstr "Logga ut på andra enheter"
 
-# machine-translated
+
 msgid ""
 "Permanently delete your account and all your weigh-ins. You'll be asked to "
 "download your data and confirm with a code sent by email first."
@@ -1185,27 +1185,27 @@ msgstr ""
 "Radera ditt konto och alla dina vägningar permanent. Du ombeds först ladda "
 "ner dina data och bekräfta med en kod som skickas via e-post."
 
-# machine-translated
+
 msgid "Remove my data…"
 msgstr "Ta bort mina data…"
 
-# machine-translated
+
 msgid "Sign up"
 msgstr "Registrera dig"
 
-# machine-translated
+
 msgid "Enter your email and we'll send you a 6-digit verification code."
 msgstr "Ange din e-postadress så skickar vi en sexsiffrig verifieringskod."
 
-# machine-translated
+
 msgid "Verify your email"
 msgstr "Verifiera din e-postadress"
 
-# machine-translated
+
 msgid "Enter your code"
 msgstr "Ange din kod"
 
-# machine-translated
+
 msgid "Verify"
 msgstr "Verifiera"
 
